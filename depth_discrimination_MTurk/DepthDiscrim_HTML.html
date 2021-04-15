@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<link rel="stylesheet" href="DepthDuration_CSS.css">
+		<script src="DepthDuration_JS.js"></script>
+	</head>
+
+	<body>
+		<!-- This calls the php function, and on submit, the page refreshes (unless otherwise specified in php) -->
+		<form name="saveData" id="saveData" action="saveFile.php" method="post">
+			<!-- Any variables you want to pass to the php have to be here -->
+			<input type="hidden" name="experimentData" id="experimentData"> <!-- this value should be your data array after JSON.stringify(data)  -->
+			<input type="hidden" name="subjID" id="subjID" value="test">
+			<input type="hidden" name="startTime" id="startTime" value="test">
+			<input type="hidden" name="startDate" id="startDate" value="test">
+			<input type="hidden" name="completedTrialsNum" id="completedTrialsNum" value=0>
+		</form>
+		
+		<!-- instructions -->
+		<div id="startingInstructions" class="instructions">
+			<div class="hidden">
+				<script type="text/javascript">
+
+				// LOAD COUNTERBALANCING CSV and EXPERIMENT SEQUENCE JSON FILE 
+				var data = $.ajax({
+							  url: 'counterbalancing.csv',
+							  dataType: 'text',
+							}).done(successFunction);
+
+
+				function successFunction(data) { // converts counterbalancing csv to JS array
+					  var allRows = data.split(/\r?\n|\r/);
+					  // table is an array with each row appended, i.e. row 0 = table[0]
+					  var table = [];
+					  for (var singleRow = 0; singleRow < allRows.length; singleRow++) {
+
+						   var rowCells = allRows[singleRow].split(',');
+						    for (var rowCell = 0; rowCell < rowCells.length; rowCell++) {
+						    	if (rowCell == 0){
+						    		var table_row = []
+						    	}						    	
+						    	table_row.push(rowCells[rowCell]);
+						    }
+						    table.push(table_row);
+
+					}
+					findRow(table); // calls function to find row to be sampled 
+				}
+
+				function findRow(table){
+					var found = false;
+					for (var row = 1; row < table.length; row++){
+						var sampled = table[row][1];
+						if (found == false){
+							if (sampled == "0"){
+								var seq_filepath = table[row][0]; // selects sequence filepath that has not been sampled --> 0
+								var found = true;
+							}
+						}
+					}
+					var stim_seq = $.ajax({ // loads in stimulus sequence from server
+	                				url: seq_filepath,
+	                				method: 'GET',
+	                				dataType: 'json',
+	                				data: JSON.stringify(),
+	                				success: function (data) {
+	                    			stim_seq = data;
+	                    			preload(practice_seq, stim_seq); // calls function to preload all scene images 
+	                    			preloadMasks(practice_seq, stim_seq); // calls function to preload all mask images 
+	                				},
+            		});
+
+				}
+
+				//PRELOADING FUNCTIONS
+				var images = new Array()
+				var masks = new Array()
+				function preload(practice_seq, stim_seq) {
+					for (var h = 0; h < practice_seq.length; h++) { // loops through all trials in practice sequence
+					images[h] = new Image() // constructer that creates an empty image object
+					images[h].src = practice_seq[h].image_path_target // sets the image source for the object 
+
+					masks[h] = new Image()
+					masks[h].src = practice_seq[h].mask_path
+					// console.log(h, "h")
+					}
+
+					for (var j = 0; j < practice_seq.length; j++) { // loops through all trials in practice sequence
+					masks[j] = new Image()
+					masks[j].src = practice_seq[j].mask_path
+					// console.log(j, "j")
+					}
+
+					for (var i = 0; i < stim_seq.length; i++) { // loops through all experimental trials in sequence 
+					images[i] = new Image()
+					images[i].src = stim_seq[i].image_path_target
+					masks[i] = new Image()
+					masks[i].src = stim_seq[i].mask_path
+					// console.log(i, "i")
+					}
+				}
+
+				
+				function preloadMasks(practice_seq, stim_seq) {
+
+					for (var k = 0; k < stim_seq.length; k++) { // loops through all experimental trials in sequence 
+					masks[k] = new Image()
+					masks[k].src = stim_seq[k].mask_path
+					// console.log(k, "k")
+					}
+				}
+				
+				</script>
+			</div>
+		</div>
+
+		<div id ="getConsent" class="instructions">
+		</div>
+
+		<div id ="Instructions2" class="instructions">
+			<h1>Instructions</h1>
+			<p>In the following experiment, you will be asked to look at pictures of everyday scenes and make distance judgments of objects in them.</p>
+		    
+		    <p>For each trial, you will see two images of scenes with a red, black, and green circle (the target) displayed over an object in the scene one after another. You will imagine yourself standing in the scene and make a judgment of how far away the object directly underneath the target is from your toes. For example, in the image below, you would be judging how far away the dry-erase whiteboard is from you, as if you were physically standing in the scene. </p>
+
+		    <p>After the first scene image is presented, you will see an image of colored squares. Then the second scene image will be presented and you will again imagine yourself in the scene and make a judgement of how far away the object directly underneath the target is from your toes. You will be asked to respond which scene image, image 1 or image 2, had a target that was closer to you.</p>
+
+	        <p>Note that the target will only appear in the vertical center of the image, directly in your line of view if you were standing in the middle of the scene.</p>
+
+	        <p></p>
+
+			<img src="example.png" class="center"/>
+		</div>
+
+		<div id = "FinalInstructions" class="instructions">
+		</div>
+
+		<div id = "getUnits" class="instructions">
+		</div>
+
+
+		<div id="lastBlockInstructions" class="instructions"> 
+		</div>
+
+
+		<!-- buttons -->
+
+		<div id="startConsentButton" class="buttonDivPg1">
+			<a href="#" id="startConsentText" onclick="showConsent()">Next</a>
+		</div>
+
+		<div id="Instructions2Button" class="buttonDivPg2">
+			<a href="#" id="Instructions2Text" onclick="nextInstructions()">Agree</a>
+		</div>
+
+		<div id="FinalInstructionsButton" class="buttonDivPg3">
+			<a href="#" id="FinalInstructionsText" onclick="finalInstructions()">Next</a>
+
+		</div>
+
+		<div id="getUnitsButton" class = "buttonDivPg4">
+			<a href="#" id="getUnitsText" onclick="myFunction();getUnits()">Begin</a>
+			<script type="text/javascript">
+				function myFunction() {
+				  alert("Please make your browser window full screen"); // so that images are consistently centered
+				}
+			</script>
+		</div>
+
+		<div id="metersSelectedButton" class = "metersButtonDiv">
+			<a href="#" id="metersSelectedText" onclick="recordUnitsMeters()">Meters</a>
+		</div>
+
+		<div id="feetSelectedButton" class = "feetButtonDiv">
+			<a href="#" id="feetSelectedText" onclick="recordUnitsFeet()">Feet</a>
+		</div>
+
+		<div id="startPracticeButton" class = "startPracticeButtonDiv">
+			<a href="#" id="startPracticeText" onclick="startPractice();">Start Practice</a>
+
+
+		</div>
+
+		<div id="startTrialsButton" class = "startTrialsButtonDiv">
+			<a href="#" id="startTrialsText" onclick="runTrial();">Start</a>
+		</div>
+		<!-- button to continue trials after break post block -->
+		<div id="restartTrialsButton" class = "restartTrialsButtonDiv">
+			<a href="#" id="restartTrialsText" onclick="runTrial();">Continue Experiment</a>
+		</div>		
+
+		<div id="revealCodeButton" class="buttonDiv">
+			<a href="#" id="revealCodeText" type onclick="endExperiment()">Reveal Code</a>
+		</div>
+
+
+		<!-- div to preload all images to prevent lag -->
+		<div id="preload" class="preload">
+		</div>
+
+		<div id="preload_masks" class="preload_masks">
+		</div>
+
+		<div id="preloadExperiment" class="preloadExperiment">
+		</div>
+
+		<div id="preload_masksExperiment" class="preload_masksExperiment">
+		</div>
+
+		<!-- start experiment -->
+		<div id="start_trials" class="startTrialsDiv">
+			<p>You have completed the practice trials!</p> 
+			<p>Click 'START' to continue to the experiment.</p>
+		</div>
+
+
+		<!-- end experiment -->
+		<div id="lastBlockInstructions" class="instructions">
+		</div>
+
+
+		<!-- fixations -->
+		<div id="fixation" class="fixationDiv">
+			<img id = "fixation_image" src="" width=750>
+		</div>
+
+		<!-- mask -->
+		<div id="mask" class="maskDiv">
+			<img id= "mask_image" src="" width=750>
+		</div>
+
+		<div id="maskExp" class="maskDiv">
+			<img id= "mask_image" src="" width=750>
+		</div>
+
+		<!-- Scene (w/ target) -->
+		<div id="scene" class="sceneDiv">
+			<img id= "scene_image" src="" width=750>
+		</div>
+
+		<div id="sceneExp" class="sceneDiv">
+			<img id= "scene_image" src="" width=750>
+		</div>
+
+		<div id="response" class="responseDiv">
+			<h1> Select the image where the target was closer to you. </h1> 
+<!-- 			<input id="numb" autocomplete="off" onfocus="this.value=''" value="" autofocus/>
+ -->
+			<button type="button" onfocus="this.value=''" value="" onclick="logScene1();">Image 1</button>
+			<button type="button" onfocus="this.value=''" value="" onclick="logScene2();">Image 2</button>
+			<script>
+
+			function logScene1() { 
+			
+			 if (practiced == false){
+			  	practice_trial ++; 
+			  	startPractice();
+			 }
+			 else{
+			  	discrim_choice = 0 // image 0 was selected 
+			  	trial ++;
+			  	runTrial();
+			 }
+			 $(".responseDiv").hide()
+
+			}
+
+			function logScene2() { 
+			
+			 if (practiced == false){
+			  	practice_trial ++; 
+			  	startPractice();
+			 }
+			 else{
+			  	discrim_choice = 1 // image 1 was selected 
+			  	trial ++;
+			  	runTrial();
+			 }
+			 $(".responseDiv").hide()
+			 
+			}
+
+			</script>
+		</div>
+
+
+		<div id="age" class="ageDiv">
+			<h1> Please report your age in years below. </h1>
+			<input id="age_numb" autocomplete="off" onfocus="this.value=''" value="" autofocus/>
+
+			<button type="button" onfocus="this.value=''" value="" onclick="age_validateForm();">Submit</button>
+			<p id="_feedback"></p>
+			<script>
+			$("age_numb").focus();
+			var x_age = document.getElementById("age_numb").autofocus; // checks that cursor is in the form field automatically 
+			// console.log(x, "is it autofocused?")
+			
+			var input_age = document.getElementById("age_numb");
+			input_age.addEventListener("keyup", function(event) { // allows participant to press enter 
+			  if (event.keyCode === 13) {
+			   age_validateForm();
+			  }
+			});
+			</script>
+			<script>
+				
+			function age_validateForm() { // validates trial depth response 
+			  var age_response, _text;
+
+			 // Get the value of the input_age field with id="age_numb"
+			 age_response = document.getElementById("age_numb").value;
+
+
+			  // If x is not a Number, less than zero, or no response was given
+			  if (isNaN(age_response) || age_response < 0 || age_response.length == 0) {
+			    _text = "Please enter a valid number";
+			  } 
+			  else {
+			  	lastInstructions();
+
+			  	_text=" "
+			   //  $("#lastBlockInstructions").append(
+			   //    "<p style='text-align:center'>Congratulations, you have finished the experiment. Thank you for your participation!</p>"
+			   //    +"<p style='text-align:center'>Click the button below to reveal your unique completion code.</p>")
+			   //  $("#lastBlockInstructions").show();
+			   //  $("#revealCodeButton").show();
+			  	// $("#age").hide()
+			  }
+			  document.getElementById("_feedback").innerHTML = _text;
+			}
+			</script>
+		</div>
+		
+	</body>
+</html> 

@@ -1,0 +1,275 @@
+body {
+  font-size: 14pt;
+}
+
+#submitButton {
+  text-align: center;
+  margin: 0 auto;
+  display: none;
+}
+
+.preload {
+  display: none;
+}
+
+.preload_masks {
+  display: none;
+}
+
+.preloadExperiment {
+  display: none;
+}
+
+.preload_masksExperiment {
+  display: none;
+}
+
+.instructions {
+  padding-top: 20px;
+  padding-left: 200px;
+  padding-right: 200px;
+  margin: 0 auto;
+  display: none;
+  text-align: justify;
+}
+
+#startingInstructions {
+  display: block;
+  padding-top: 20px;
+  padding-left: 200px;
+  padding-right: 200px;
+  margin: 0 auto;
+  text-align: justify;
+}
+
+#getConsent {
+  display: block;
+}
+
+#Instructions2{
+  display:block;
+
+}
+
+#FinalInstructions{
+  display:block;
+}
+
+#getUnits{
+  display: block;
+}
+
+.buttonDiv {
+  width: 100px;
+  text-align: center;
+  border: 4px outset black;
+  background:cadetblue;
+  padding: 5px;
+  margin: 0 auto;
+  color: white;
+  display: none;
+}
+
+.buttonDivPg1{
+  width: 100px;
+  text-align: center;
+  border: 4px outset black;
+  background:cadetblue;
+  padding: 5px;
+  margin: 0 auto;
+  color: white;
+  display: none;
+}
+
+.buttonDivPg2{
+  width: 100px;
+  text-align: center;
+  border: 4px outset black;
+  background:cadetblue;
+  padding: 5px;
+  margin: 0 auto;
+  color: white;
+  display: none;
+}
+
+.buttonDivPg3{
+  width: 100px;
+  text-align: center;
+  border: 4px outset black;
+  background:cadetblue;
+  padding: 5px;
+  margin: 0 auto;
+  color: white;
+  display: none;
+}
+
+.buttonDivPg4{
+  width: 100px;
+  text-align: center;
+  border: 4px outset black;
+  background:cadetblue;
+  padding: 5px;
+  margin: 0 auto;
+  color: white;
+  display: none;
+}
+
+.metersButtonDiv{
+  width: 100px;
+  text-align: center;
+  border: 1px outset black;
+  background:azure;
+  padding: 5px;
+  margin: 0 auto;
+  color: white;
+  display: none;
+}
+
+.feetButtonDiv{
+  width: 100px;
+  text-align: center;
+  border: 1px outset black;
+  background:azure;
+  padding: 5px;
+  margin: 0 auto;
+  color: white;
+  display: none;
+  float: ;
+}
+
+.startPracticeButtonDiv{
+  width: 100px;
+  text-align: center;
+  border: 4px outset black;
+  background:cadetblue;
+  padding: 5px;
+  margin: 0 auto;
+  color: white;
+  display: none;
+}
+
+.startTrialsButtonDiv{
+  width: 100px;
+  text-align: center;
+  border: 4px outset black;
+  background:cadetblue;
+  padding: 5px;
+  margin: 0 auto;
+  color: white;
+  display: none; 
+}
+
+.restartTrialsButtonDiv{
+  width: 100px;
+  text-align: center;
+  border: 4px outset black;
+  background:cadetblue;
+  padding: 5px;
+  margin: 0 auto;
+  color: white;
+  display: none; 
+}
+
+#startConsentButton {
+  display: block;
+}
+
+#Instructions2Button {
+  display: block;
+}
+
+#FinalInstructionsButton{
+  display: block;
+}
+
+#metersSelectedButton{
+  display: block;
+}
+
+#feetSelectedButton{
+  display: block;
+}
+
+
+#startTrialsButton{
+  display: block;
+}
+
+/*#restartTrialsButton{
+  display: block;
+}*/
+
+.trialDiv {
+  border: 2px solid gray;
+  padding: 20px;
+  width: 200px;
+  margin:0 auto;
+  display: none;
+}
+
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.fixationDiv{ 
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  left:-85px
+}
+
+.sceneDiv{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  left:-85px
+
+}
+
+.maskDiv{ 
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  left:-85px
+}
+
+.responseDiv{
+  display: none;
+  position: absolute;
+  top: 10%;
+  left: 45%;
+  margin-top: -50px;
+  margin-left: -50px;
+  width: 200;
+  height: 200;
+
+}
+
+
+.ageDiv{
+  display: none;
+  position: absolute;
+  top: 10%;
+  left: 45%;
+  margin-top: -50px;
+  margin-left: -50px;
+  width: 200;
+  height: 200;
+
+}
+
+.startTrialsDiv {
+  padding-top: 20px;
+  padding-left: 200px;
+  padding-right: 200px;
+  margin: 0 auto;
+  display: none;
+  text-align: justify;
+}
