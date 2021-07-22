@@ -19,13 +19,23 @@ var thisData = {
   "startDate":[],
   "startTime":[],
   "trial": [],
-  "stimulus":[],
+  "stimulus_0":[],
+  "stimulus_1":[],
   "duration": [],
-  "actual_depth": [],
+  "actual_depth_0": [],
+  "actual_depth_1": [],
   "discrim_choice": [],
   "trial_RT":[],
-  "log_sceneDuration": [],
-  "unitSelection": []
+  "log_fixation": [],
+  "log_sceneDuration1": [],
+  "log_mask1": [],
+  "log_sceneDuration2": [],
+  "log_mask2": [],
+  "unitSelection": [],
+  "meanDepth_rating": [],
+  "navigability_rating": [],
+  "rated_stimulus": [],
+  "rating_RT": []
 };
 
 // information flow: depth_duration_variables.csv --> url for participant --> counterbalancing csv indexed by url fragment --> sampled json path
@@ -45,7 +55,7 @@ var startDate = start.getMonth() + "-" + start.getDate() + "-" + start.getFullYe
 var startTime = start.getHours() + "-" + start.getMinutes() + "-" + start.getSeconds();
 
 // initialize empty variables
-var stimulus, duration, actual_depth, discrim_choice, endExpTime, startExpTime, RT, log_sceneDuration, reported_age; 
+var stimulus_0, stimulus_1, duration, actual_depth_0, actual_depth_1, discrim_choice, endExpTime, startExpTime, RT, log_fixation, log_sceneDuration1, log_mask1, log_sceneDuration2, log_mask2, reported_age, meanDepth_rating, navigability_rating, rated_stimulus, rating_RT; 
 
 // unit preference variables 
 var pref = false // unit preference has not been made
@@ -56,21 +66,30 @@ var fixation_time = 500
 var mask_time = 500 
 
 var practice_trial = 0 // counter that references the index of the practice_seq variable 
-var practice_seq = JSON.parse('[{"sequence": "practice", "image": "practice/000496_2014-06-08_22-50-40_260595134347_rgbf000056-resize_5", "duration": 250, "num": 1, "depth": 2.0525, "image_path": "practice/000496_2014-06-08_22-50-40_260595134347_rgbf000056-resize_5/000496_2014-06-08_22-50-40_260595134347_rgbf000056-resize-original.jpg", "image_path_target": "practice/000496_2014-06-08_22-50-40_260595134347_rgbf000056-resize_5/000496_2014-06-08_22-50-40_260595134347_rgbf000056-resize_5-target.png", "mask_path": "masks/mask_252.jpg", "fixation_path": "fixation.jpg", "sampled": 0}, {"sequence": "practice", "image": "practice/003086_2014-06-15_15-24-53_094959634447_rgbf000150-resize_3", "duration": 750, "num": 2, "depth": 3.588, "image_path": "practice/003086_2014-06-15_15-24-53_094959634447_rgbf000150-resize_3/003086_2014-06-15_15-24-53_094959634447_rgbf000150-resize-original.jpg", "image_path_target": "practice/003086_2014-06-15_15-24-53_094959634447_rgbf000150-resize_3/003086_2014-06-15_15-24-53_094959634447_rgbf000150-resize_3-target.png", "mask_path": "masks/mask_129.jpg", "fixation_path": "fixation.jpg", "sampled": 0}, {"sequence": "practice", "image": "practice/001064_2014-06-08_21-58-08_260595134347_rgbf000097-resize_2", "duration": 500, "num": 3, "depth": 1.539, "image_path": "practice/001064_2014-06-08_21-58-08_260595134347_rgbf000097-resize_2/001064_2014-06-08_21-58-08_260595134347_rgbf000097-resize-original.jpg", "image_path_target": "practice/001064_2014-06-08_21-58-08_260595134347_rgbf000097-resize_2/001064_2014-06-08_21-58-08_260595134347_rgbf000097-resize_2-target.png", "mask_path": "masks/mask_2.jpg", "fixation_path": "fixation.jpg", "sampled": 0}]')
+// var practice_seq = JSON.parse('[{"sequence": "practice", "duration": 250, "depth_0": 3.05, "depth_1": 3.17, "image_path_target_0": "depth_discrimination_stimuli/000451_2014-06-08_16-20-19_260595134347_rgbf000126-resize_2/000451_2014-06-08_16-20-19_260595134347_rgbf000126-resize_2-target.png", "image_path_target_1": "depth_discrimination_stimuli/000079_2014-05-14_21-35-51_260595134347_rgbf000172-resize_4/000079_2014-05-14_21-35-51_260595134347_rgbf000172-resize_4-target.png", "mask_path": "masks/mask_33.jpg", "fixation_path": "fixation.jpg"}, {"sequence": "practice", "duration": 750, "depth_0": 1.8, "depth_1": 2.0, "image_path_target_0": "depth_discrimination_stimuli/000344_2014-06-09_19-37-43_260595134347_rgbf000172-resize_3/000344_2014-06-09_19-37-43_260595134347_rgbf000172-resize_3-target.png", "image_path_target_1": "depth_discrimination_stimuli/000380_2014-06-09_16-03-21_260595134347_rgbf000074-resize_0/000380_2014-06-09_16-03-21_260595134347_rgbf000074-resize_0-target.png", "mask_path": "masks/mask_34.jpg", "fixation_path": "fixation.jpg"}, {"sequence": "practice", "duration": 500, "depth_0": 4.7, "depth_1": 4.1, "image_path_target_0": "depth_discrimination_stimuli/000375_2014-06-08_11-17-29_260595134347_rgbf000133-resize_2/000375_2014-06-08_11-17-29_260595134347_rgbf000133-resize_2-target.png", "image_path_target_1": "depth_discrimination_stimuli/001033_2014-06-08_13-23-43_260595134347_rgbf000055-resize_1/001033_2014-06-08_13-23-43_260595134347_rgbf000055-resize_1-target.png", "mask_path": "masks/mask_35.jpg", "fixation_path": "fixation.jpg"}]')
+var practice_seq = JSON.parse('[{"sequence": "practice", "duration": 250, "depth_0": 3.05, "depth_1": 3.17, "image_path_target_0": "depth_discrimination_practice_stimuli/000451_2014-06-08_16-20-19_260595134347_rgbf000126-resize_2/000451_2014-06-08_16-20-19_260595134347_rgbf000126-resize_2-target.png", "image_path_target_1": "depth_discrimination_practice_stimuli/000079_2014-05-14_21-35-51_260595134347_rgbf000172-resize_4/000079_2014-05-14_21-35-51_260595134347_rgbf000172-resize_4-target.png", "mask_path": "masks/mask_33.jpg", "fixation_path": "fixation.jpg"}, {"sequence": "practice", "duration": 750, "depth_0": 1.8, "depth_1": 2.0, "image_path_target_0": "depth_discrimination_practice_stimuli/000344_2014-06-09_19-37-43_260595134347_rgbf000172-resize_3/000344_2014-06-09_19-37-43_260595134347_rgbf000172-resize_3-target.png", "image_path_target_1": "depth_discrimination_practice_stimuli/000380_2014-06-09_16-03-21_260595134347_rgbf000074-resize_0/000380_2014-06-09_16-03-21_260595134347_rgbf000074-resize_0-target.png", "mask_path": "masks/mask_34.jpg", "fixation_path": "fixation.jpg"}, {"sequence": "practice", "duration": 500, "depth_0": 4.7, "depth_1": 4.1, "image_path_target_0": "depth_discrimination_practice_stimuli/000375_2014-06-08_11-17-29_260595134347_rgbf000133-resize_2/000375_2014-06-08_11-17-29_260595134347_rgbf000133-resize_2-target.png", "image_path_target_1": "depth_discrimination_practice_stimuli/001033_2014-06-08_13-23-43_260595134347_rgbf000055-resize_1/001033_2014-06-08_13-23-43_260595134347_rgbf000055-resize_1-target.png", "mask_path": "masks/mask_35.jpg", "fixation_path": "fixation.jpg"}]')
+
 var practiced = false // practice trials have not been completed 
 
 var trial = 0 //counter that references the index of the stim_seq variable
 
 var counter = 0 // counter for logging 
 
+// counters for the scene property rating part of the experiment 
+var rating_trial = 0
+var rating_counter = 0
 
-// 192 trials in a full experiment 
-var num_trials = 191 // since indexing starts at zero num_trial = actual total trials - 1
+// 96 in v3 (88 real trials, 8 catch trial) // 88 in v2 / 96 trials in a full experiment 
+var num_trials = 95 // 95 // since indexing starts at zero num_trial = actual total trials - 1
+// 196 trials (192 real trials, 4 catch trials) // 192 trials in a full experiment 
+var num_rating_trials = 195 // 195 // 191 
 
 // solves problem of last practice variables being saved in the estimate variable and getting recorded 
 // set to true once trial has actually begun NOT in the beginning of the function because the practice trial is still saved in the estimate variable
 var start_recording = false 
 var age_recorded = false
+
+var start_recording_ratings = false 
 
 // reads in counterbalancing csv and calls function to get sequence filepath 
 var data = $.ajax({
@@ -101,6 +120,8 @@ function successFunction(data) {
   console.log(seq_filepath)
 
 
+
+
   // ajax request for selected JSON (seq_filepath)
   stim_seq = $.ajax({ // loads in stimulus sequence from server
                           url: seq_filepath,
@@ -109,11 +130,22 @@ function successFunction(data) {
                           data: JSON.stringify(),
                           success: function (data) {
                             stim_seq = data; 
-                            sequenceName = stim_seq[0]["sequence"] // get sequence name, which is pushed in saveTrialData
+                            sequenceName = seq_filepath // get sequence name, which is pushed in saveTrialData
                             preload(practice_seq, stim_seq); // calls function to preload all scene images 
                             preloadMasks(practice_seq, stim_seq); // calls function to preload all mask images 
                           },
                 });
+  // main list of all stimuli 
+  ratings_seq = $.ajax({ // loads in stimulus sequence from server
+                          url: "ratings_stimuli.json",
+                          method: 'GET',
+                          dataType: 'json',
+                          data: JSON.stringify(),
+                          success: function (data) {
+                            ratings_seq = shuffle(data); 
+                          },
+                });
+  // ratings_seq = shuffle(ratings_seq);
 
 }
 
@@ -133,6 +165,11 @@ $(document).ready(function(){
 
   $("#start_trials").hide()
   $(".startTrialsButtonDiv").hide();
+
+  $("#meanDepth_response").hide();
+  $("#navigability_response").hide();
+  $("#cb_navigability_response").hide();
+  $("#cb_meanDepth_response").hide();
 
 
   $("#Instructions2").hide();
@@ -218,10 +255,11 @@ function finalInstructions(){
   $(".buttonDivPg4").show()
 
   $("#FinalInstructions").append(
-    "<h1> Instructions </h1>"
-    + "<p>A fixation cross will appear in the center of the screen - focus on this cross. The image will then appear for a brief amount of time, so make sure you are watching closely as to not miss the target. Then, the scene and target will disappear, and you will see an image of colored squares. Once this image disappears you will see another image of a scene for a brief amount of time. This will again be followed by an image of colored squares. Then you will be asked to select which scene image had a target that would be closer to you if you were to imagine yourself in the scene. As soon as you click this button for 'Image 1' or 'Image 2', the fixation cross will be displayed and the next trial will begin.</p>"
-    + "<p>We ask that you pay close attention on each trial so you detect all of the targets, but occasionally you may accidentally miss one. If you do, please enter '0' in the response box. You will not be penalized for missing a target, we'd just like to know so we can factor this into our analysis later.</p>"
-    + "<p> You will complete 96 trials, and the experiment will take approximately 20 minutes. </p>"
+    "<h1> Part 1 Task Instructions: </h1>"
+    + "<p>A fixation cross will appear in the center of the screen - focus on this cross. The image will then appear for a brief amount of time, so make sure you are watching closely as to not miss the target. Then, the scene and target will disappear, and you will see an image of colored squares. Once this image disappears you will see another image of a scene for a brief amount of time. This will again be followed by an image of colored squares.</p>"
+    + "<p>Then you will see a red fixation cross, indicating that your response has not been given yet. Respond which image's target was closer to you - Image 1 or Image 2? Press the 'c' key on your keyboard to indicate Image 1 or press the 'm' key on your keyboard to indicate Image 2. As soon as you respond, the fixation cross will turn black and the next trial will begin.</p>"
+    + "<b>Please respond as quickly and accurately as possible!</b>"
+    + "<p> You will complete 96 trials total.</p>"
     + "<p> The experiment will begin with three practice trials. If you are ready to begin, please click 'BEGIN' below. </p>"
     )
 }
@@ -287,10 +325,10 @@ function startPractice(){
     // Timing note: time accumulates so it is not actual duration but relative time
     // have to account for the time already spent
     var scene1 = setTimeout(function(){showScene1();}, fixation_time); // the time here is how long it takes to show up NOT time on the screen
-    var mask = setTimeout(function(){showMask();}, fixation_time + scene_duration); 
+    var mask = setTimeout(function(){showMask1();}, fixation_time + scene_duration); 
     var scene2 = setTimeout(function(){showScene2();}, fixation_time + scene_duration + mask_time); // the time here is how long it takes to show up NOT time on the screen
-    var mask2 = setTimeout(function(){showMask();}, fixation_time + scene_duration + mask_time + scene_duration); 
-    var response = setTimeout(function(){getResponse();}, fixation_time + scene_duration + mask_time + scene_duration + mask_time)
+    var mask2 = setTimeout(function(){showMask2();}, fixation_time + scene_duration + mask_time + scene_duration); 
+    var response = setTimeout(function(){getResponse();detectKeyPress();}, fixation_time + scene_duration + mask_time + scene_duration + mask_time)
   }
 }
 
@@ -306,20 +344,21 @@ function runTrial(){
 
   if (start_recording == true){ // prevents the last practice trial from being recorded 
     var trial_params = getTrialParams();
+    // [stimulus_0, stimulus_1, duration, actual_depth_0, actual_depth_1];
+    stimulus_0 = trial_params[0]
+    stimulus_1 = trial_params[1]
 
-    stimulus = trial_params[0]
-    duration = trial_params[1]
-    actual_depth = trial_params[2]
+    duration = trial_params[2]
 
-    console.log(discrim_choice)
+    actual_depth_0 = trial_params[3]
+    actual_depth_1 = trial_params[4]
 
-    endTrialTime = new Date; // time at which response has been given for past trial
-    RT = endTrialTime - startTrialTime;
+    console.log(discrim_choice, "dc")
+    console.log(trial, "trial")
 
     saveTrialData();
 
     counter ++;
-
   }
 
   if (trial == 0){
@@ -327,29 +366,29 @@ function runTrial(){
   }
 
   if (trial > num_trials){ 
-    endExpTime = new Date; //get time of end of last block to calculate total experiment time
+    // endExpTime = new Date; //get time of end of last block to calculate total experiment time
 
     getAge();
 
   }
 
   else{
-    console.log(trial)
-
     start_recording = true; // start recording because practice trials are done 
     scene_duration = getTrialDuration();
     var fixation = showFixation();
     // Timing note: time accumulates so it is not actual duration but relative time
     // have to account for the time already spent
     var scene1 = setTimeout(function(){showScene1();}, fixation_time); // the time here is how long it takes to show up NOT time on the screen
-    var mask = setTimeout(function(){showMask();}, fixation_time + scene_duration); 
+    var mask = setTimeout(function(){showMask1();}, fixation_time + scene_duration); 
     var scene2 = setTimeout(function(){showScene2();}, fixation_time + scene_duration + mask_time); // the time here is how long it takes to show up NOT time on the screen
-    var mask2 = setTimeout(function(){showMask();}, fixation_time + scene_duration + mask_time + scene_duration); 
-    var response = setTimeout(function(){getResponse();}, fixation_time + scene_duration + mask_time + scene_duration + mask_time)
+    var mask2 = setTimeout(function(){showMask2();}, fixation_time + scene_duration + mask_time + scene_duration); 
+    var response = setTimeout(function(){getResponse();detectKeyPress();}, fixation_time + scene_duration + mask_time + scene_duration + mask_time)
+
   }
 }
 
 function showFixation(){
+  startFixation = new Date; 
 
   f_path = "fixation.jpg"
   $("#fixation_image").attr("src", f_path)
@@ -361,22 +400,25 @@ function showFixation(){
 }
 
 function showScene1(){
+  endFixation = new Date;
+  log_fixation = endFixation - startFixation;
+
   if (practiced == false){
-    var s_path = practice_seq[practice_trial].image_path_target_0
+    var s_path_0 = practice_seq[practice_trial].image_path_target_0
     var s_duration = practice_seq[practice_trial].duration 
-    var actual_depth = stim_seq[trial].depth_0
+    var actual_depth_0 = stim_seq[trial].depth_0
 
   }
   else{ 
     startTrialTime = new Date; // time at which the scene is presented for a given trial 
 
-    var s_path = stim_seq[trial].image_path_target_0
+    var s_path_0 = stim_seq[trial].image_path_target_0
     var s_duration = stim_seq[trial].duration 
-    var actual_depth = stim_seq[trial].depth_0
+    var actual_depth_0 = stim_seq[trial].depth_0
   }
 
-  startSceneTimeLog = new Date; // time at which scene is presented 
-  $("#scene_image").attr("src", s_path);
+  startSceneTimeLog1 = new Date; // time at which scene is presented 
+  $("#scene_image").attr("src", s_path_0);
   $(document).ready(function(){
     $(".fixationDiv").hide();
     $(".maskDiv").hide();
@@ -386,22 +428,27 @@ function showScene1(){
 }
 
 function showScene2(){
+  endMaskTimeLog1 = new Date;
+  log_mask1 = endMaskTimeLog1 - startMaskTimeLog1;
+
+  startTrialTime = new Date; // time at which scene 2 is shown 
+
   if (practiced == false){
-    var s_path = practice_seq[practice_trial].image_path_target
+    var s_path_1 = practice_seq[practice_trial].image_path_target_1
     var s_duration = practice_seq[practice_trial].duration 
-    var actual_depth = stim_seq[trial].depth_1
+    var actual_depth_1 = stim_seq[trial].depth_1
 
   }
   else{ 
-    startTrialTime = new Date; // time at which the scene is presented for a given trial 
+    // startTrialTime = new Date; // time at which the scene is presented for a given trial 
 
-    var s_path = stim_seq[trial].image_path_target
+    var s_path_1 = stim_seq[trial].image_path_target_1
     var s_duration = stim_seq[trial].duration 
-    var actual_depth = stim_seq[trial].depth_1
+    var actual_depth_1 = stim_seq[trial].depth_1
   }
 
-  startSceneTimeLog = new Date; // time at which scene is presented 
-  $("#scene_image").attr("src", s_path);
+  startSceneTimeLog2 = new Date; // time at which scene is presented 
+  $("#scene_image").attr("src", s_path_1);
   $(document).ready(function(){
     $(".fixationDiv").hide();
     $(".maskDiv").hide();
@@ -420,7 +467,9 @@ function getTrialDuration(){ // from sequence json
   return stim_duration
 }
 
-function showMask(){
+function showMask1(){
+  startMaskTimeLog1 = new Date;
+
   if (practiced == false){
     var m_path = practice_seq[practice_trial].mask_path
   }
@@ -428,8 +477,29 @@ function showMask(){
     var m_path = stim_seq[trial].mask_path
   }
 
-  endSceneTimeLog = new Date;
-  log_sceneDuration = endSceneTimeLog - startSceneTimeLog;
+  endSceneTimeLog1 = new Date;
+  log_sceneDuration1 = endSceneTimeLog1 - startSceneTimeLog1;
+  $("#mask_image").attr("src", m_path);
+  $(document).ready(function(){
+    $(".fixationDiv").hide();
+    $(".sceneDiv").hide();
+    $(".maskDiv").show();
+  })
+
+}
+
+function showMask2(){
+  startMaskTimeLog2 = new Date;
+
+  if (practiced == false){
+    var m_path = practice_seq[practice_trial].mask_path
+  }
+  else{ 
+    var m_path = stim_seq[trial].mask_path
+  }
+
+  endSceneTimeLog2 = new Date;
+  log_sceneDuration2 = endSceneTimeLog2 - startSceneTimeLog2;
   $("#mask_image").attr("src", m_path);
   $(document).ready(function(){
     $(".fixationDiv").hide();
@@ -443,6 +513,11 @@ function showMask(){
 // depth estimate is validated in html response div
 
 function getResponse(){
+  endMaskTimeLog2 = new Date;
+  log_mask2 = endMaskTimeLog2 - startMaskTimeLog2;
+
+  red_f_path = "red_fixation.jpg"
+  $("#red_fixation_image").attr("src", red_f_path)
 
   $(document).ready(function(){
     $(".fixationDiv").hide();
@@ -450,9 +525,47 @@ function getResponse(){
     $(".maskDiv").hide();
     $(".responseDiv").show();
 
-
   })
 
+}
+
+function detectKeyPress(){
+	// see if key is pressed to end trial early
+
+	// add event listener for keypress
+	$(document).bind("keypress", function(event){
+		if (event.which == 99){ //99 is js keycode for c
+			key = "c";
+			discrim_choice = 0;
+			endTrialTime = new Date; // time at which response has been given for past trial
+    		RT = endTrialTime - startTrialTime;
+
+			nextTrial(); //since button was pressed, move onto next trial
+		}
+		else if (event.which == 109){ //109 is js keycode for m
+			key = "m";
+			discrim_choice = 1;
+			endTrialTime = new Date; // time at which response has been given for past trial
+    		RT = endTrialTime - startTrialTime;
+
+			nextTrial(); //since button was pressed, move onto next trial
+		}
+	});
+} 
+
+function nextTrial(){ 
+
+	$(document).unbind("keypress"); //assuming there has already been a keypress, remove event so it can be added for next trial
+
+	if (practiced == false){
+		practice_trial ++ 
+		startPractice();
+  	}
+	else{ 
+  		trial ++ 
+  		runTrial();
+  	}
+  	$(".responseDiv").hide()
 }
 
 
@@ -469,28 +582,161 @@ function getAge(){
 
 
   })
+  stimulus_0 = ""
+  stimulus_1 = ""
+  duration = ""
+  actual_depth_0 = ""
+  actual_depth_1 = ""
+  discrim_choice = ""
+  log_sceneDuration = ""
 
 
 }
 
 function getTrialParams(){ // returns trial parameters to be logged 
-  var stimulus = stim_seq[counter].image_path_target
-  var duration = stim_seq[counter].duration 
-  var actual_depth = stim_seq[counter].depth
+  var stimulus_0 = stim_seq[counter].image_path_target_0
+  var stimulus_1 = stim_seq[counter].image_path_target_1
 
-  return [stimulus, duration, actual_depth];
+  var duration = stim_seq[counter].duration 
+  var actual_depth_0 = stim_seq[counter].depth_0
+  var actual_depth_1 = stim_seq[counter].depth_1
+
+  return [stimulus_0, stimulus_1, duration, actual_depth_0, actual_depth_1];
 
 }
 
-function lastInstructions(){ // AGE IS NOT GETTING RECORDED!
+function sceneRatingInstructions(){ 
   if (age_recorded == false){
     reported_age = document.getElementById("age_numb").value;
+
     saveTrialData();
     age_recorded = true
+    trial ++ 
   }
 
   if (age_recorded == true){
     $("#age").hide() 
+    $("#ratingsInstructions").show();
+    $(".startRatingButtonDiv").show();
+
+  }
+}
+
+
+function runRatingTrials(){
+
+  $("#ratingsInstructions").hide();
+  $(".startRatingButtonDiv").hide();
+
+
+  if (start_recording_ratings == true){ 
+
+
+    rated_stimulus = ratings_seq[rating_counter].image_path
+    console.log(rated_stimulus, "rs")
+
+    endRatingTrialTime = new Date; // time at which response has been given for past trial
+    rating_RT = endRatingTrialTime - startRatingTrialTime;
+
+    saveTrialData();
+
+    rating_counter ++;
+
+  }
+
+
+  if (rating_trial > num_rating_trials){ 
+    endExpTime = new Date; //get time of end of last block to calculate total experiment time
+
+    lastInstructions();
+
+
+  }
+
+  else{
+    console.log(rating_trial, "ratingtrial")
+
+    start_recording_ratings = true; // start recording because practice trials are done 
+    //check if the number is even
+	if(url_num % 2 == 0) {
+		getMeanDepthRating();
+	    console.log("Mean depth first");
+	}
+
+	// if the number is odd
+	else {
+		cb_getNavigabilityRating();
+	    console.log("Navigability first");
+	}
+
+    // getMeanDepthRating();
+  }
+}
+
+function getMeanDepthRating(){
+  startRatingTrialTime = new Date; // time at which the response page is available 
+  var r_path = ratings_seq[rating_trial].image_path
+
+  $(document).ready(function(){
+  	$(".startRatingButtonDiv").hide();
+    $(".meanDepth_responseDiv").show();
+    $("#r_scene_image").attr("src", r_path);
+    $(".r_sceneDiv").show();
+
+  })
+
+}
+
+function getNavigabilityRating(md_rating){
+  $(document).ready(function(){
+  	$(".startRatingButtonDiv").hide();
+    $(".navigability_responseDiv").show();
+
+  })
+
+  meanDepth_rating = md_rating;
+}
+
+function cb_getNavigabilityRating(){
+  startRatingTrialTime = new Date; // time at which the response page is available 
+  startTrialTime = new Date; // time at which the response page is available 
+  var r_path = ratings_seq[rating_trial].image_path
+
+  $(document).ready(function(){
+  	$(".startRatingButtonDiv").hide();
+  	$(".meanDepth_responseDiv").hide();
+  	$(".navigability_responseDiv").hide();
+
+    $(".cb_navigability_responseDiv").show();
+    $("#r_scene_image").attr("src", r_path);
+    $(".r_sceneDiv").show();
+
+  })
+}
+
+function cb_getMeanDepthRating(nav_rating){
+  $(document).ready(function(){
+  	$(".startRatingButtonDiv").hide();
+    $(".cb_meanDepth_responseDiv").show();
+
+  })
+
+  navigability_rating = nav_rating;
+}
+
+
+function lastInstructions(){ 
+  // if (age_recorded == false){
+  //   reported_age = document.getElementById("age_numb").value;
+  //   saveTrialData();
+  //   age_recorded = true
+  // }
+
+  if (age_recorded == true){
+  	
+  	$(".r_sceneDiv").hide();
+  	$(".startRatingButtonDiv").hide();
+    $("#ratingsInstructions").hide() 
     $("#lastBlockInstructions").append(
       "<p style='text-align:center'>Congratulations, you have finished the experiment. Thank you for your participation!</p>"
       +"<p style='text-align:center'>Click the button below to reveal your unique completion code.</p>")
@@ -498,8 +744,6 @@ function lastInstructions(){ // AGE IS NOT GETTING RECORDED!
     $("#revealCodeButton").show();
 
   }
- 
-
 }
 
 
@@ -526,7 +770,7 @@ function saveTrialData(){
   // global variables --> will be repetitive, same value for every row (each row will represent one trial)
   thisData["subjID"].push(subjID);
   thisData["experimentName"].push("DepthScenes");
-  thisData["versionName"].push("duration_manipulation");
+  thisData["versionName"].push("duration_discrimination");
   thisData["sequenceName"].push(sequenceName);
   thisData["url"].push(url);
   thisData["selected_row"].push(selected_row);
@@ -540,14 +784,25 @@ function saveTrialData(){
 
   // trial-by-trial variables, changes each time this function is called
   thisData["trial"].push(trial);
-  thisData["stimulus"].push(stimulus);
+  thisData["stimulus_0"].push(stimulus_0);
+  thisData["stimulus_1"].push(stimulus_1);
   thisData["duration"].push(duration);
-  thisData["actual_depth"].push(actual_depth);
+  thisData["actual_depth_0"].push(actual_depth_0);
+  thisData["actual_depth_1"].push(actual_depth_1);
   thisData["discrim_choice"].push(discrim_choice);
   thisData["trial_RT"].push(RT);
-  thisData["log_sceneDuration"].push(log_sceneDuration);
+  thisData["log_fixation"].push(log_fixation);
+  thisData["log_sceneDuration1"].push(log_sceneDuration1);
+  thisData["log_mask1"].push(log_mask1);
+  thisData["log_sceneDuration2"].push(log_sceneDuration2);
+  thisData["log_mask2"].push(log_mask2);
+  thisData["meanDepth_rating"].push(meanDepth_rating);
+  thisData["navigability_rating"].push(navigability_rating);
+  thisData["rated_stimulus"].push(rated_stimulus);
+  thisData["rating_RT"].push(rating_RT);
 
 }
+
 
 function saveAllData() {
   // saves last pieces of data that needed to be collected at the end, and calls sendToServer function

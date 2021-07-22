@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/001540_2014-06-20_17-01-05_260595134347_rgbf000086-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/001540_2014-06-20_17-01-05_260595134347_rgbf000086-resize/image/0000086.jpg",
+    "objects": [
+        {
+            "name": "flyer",
+            "dbID": 3,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 288.9860623781676,
+                    "depth": 1.459
+                }
+            ]
+        }
+    ]
+}

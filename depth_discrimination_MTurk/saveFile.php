@@ -10,7 +10,7 @@
 	// set variables, either explicitly or post variables from form inputs
 	$experimentName = "DepthDuration"; // basic paradigm with duration manipulation 
 	// $versionName = "duration_manipulation";
-	$folderName = "depth_duration_Mturk";
+	$folderName = "depth_discrimination_MTurk";
 	$dataURL = "/var/www/html/{$experimentName}/{$folderName}/data"; //this needs to be the location on the SERVER, not on the IP address
 	$startDate = $_POST["startDate"];
 	$startTime = $_POST["startTime"];
