@@ -63,7 +63,7 @@ var unit = null
 
 // constant timing variables 
 var fixation_time = 500
-var mask_time = 500 
+var mask_time = 500  
 
 var practice_trial = 0 // counter that references the index of the practice_seq variable 
 // var practice_seq = JSON.parse('[{"sequence": "practice", "duration": 250, "depth_0": 3.05, "depth_1": 3.17, "image_path_target_0": "depth_discrimination_stimuli/000451_2014-06-08_16-20-19_260595134347_rgbf000126-resize_2/000451_2014-06-08_16-20-19_260595134347_rgbf000126-resize_2-target.png", "image_path_target_1": "depth_discrimination_stimuli/000079_2014-05-14_21-35-51_260595134347_rgbf000172-resize_4/000079_2014-05-14_21-35-51_260595134347_rgbf000172-resize_4-target.png", "mask_path": "masks/mask_33.jpg", "fixation_path": "fixation.jpg"}, {"sequence": "practice", "duration": 750, "depth_0": 1.8, "depth_1": 2.0, "image_path_target_0": "depth_discrimination_stimuli/000344_2014-06-09_19-37-43_260595134347_rgbf000172-resize_3/000344_2014-06-09_19-37-43_260595134347_rgbf000172-resize_3-target.png", "image_path_target_1": "depth_discrimination_stimuli/000380_2014-06-09_16-03-21_260595134347_rgbf000074-resize_0/000380_2014-06-09_16-03-21_260595134347_rgbf000074-resize_0-target.png", "mask_path": "masks/mask_34.jpg", "fixation_path": "fixation.jpg"}, {"sequence": "practice", "duration": 500, "depth_0": 4.7, "depth_1": 4.1, "image_path_target_0": "depth_discrimination_stimuli/000375_2014-06-08_11-17-29_260595134347_rgbf000133-resize_2/000375_2014-06-08_11-17-29_260595134347_rgbf000133-resize_2-target.png", "image_path_target_1": "depth_discrimination_stimuli/001033_2014-06-08_13-23-43_260595134347_rgbf000055-resize_1/001033_2014-06-08_13-23-43_260595134347_rgbf000055-resize_1-target.png", "mask_path": "masks/mask_35.jpg", "fixation_path": "fixation.jpg"}]')
@@ -82,7 +82,7 @@ var rating_counter = 0
 // 96 in v3 (88 real trials, 8 catch trial) // 88 in v2 / 96 trials in a full experiment 
 var num_trials = 95 // 95 // since indexing starts at zero num_trial = actual total trials - 1
 // 196 trials (192 real trials, 4 catch trials) // 192 trials in a full experiment 
-var num_rating_trials = 195 // 195 // 191 
+var num_rating_trials = 2 // 195 // 191 
 
 // solves problem of last practice variables being saved in the estimate variable and getting recorded 
 // set to true once trial has actually begun NOT in the beginning of the function because the practice trial is still saved in the estimate variable
