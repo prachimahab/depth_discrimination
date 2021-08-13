@@ -79,8 +79,8 @@ var counter = 0 // counter for logging
 var rating_trial = 0
 var rating_counter = 0
 
-// 96 in v3 (88 real trials, 8 catch trial) // 88 in v2 / 96 trials in a full experiment 
-var num_trials = 95 // 95 // since indexing starts at zero num_trial = actual total trials - 1
+// 52 in v4 (44 real trials, 8 catch trial) // 88 in v2 / 96 trials in a full experiment 
+var num_trials = 51 // 95 // since indexing starts at zero num_trial = actual total trials - 1
 // 196 trials (192 real trials, 4 catch trials) // 192 trials in a full experiment 
 var num_rating_trials = 2 // 195 // 191 
 
@@ -256,11 +256,11 @@ function finalInstructions(){
 
   $("#FinalInstructions").append(
     "<h1> Part 1 Task Instructions: </h1>"
-    + "<p>A fixation cross will appear in the center of the screen - focus on this cross. The image will then appear for a brief amount of time, so make sure you are watching closely as to not miss the target. Then, the scene and target will disappear, and you will see an image of colored squares. Once this image disappears you will see another image of a scene for a brief amount of time. This will again be followed by an image of colored squares.</p>"
-    + "<p>Then you will see a red fixation cross, indicating that your response has not been given yet. Respond which image's target was closer to you - Image 1 or Image 2? Press the 'c' key on your keyboard to indicate Image 1 or press the 'm' key on your keyboard to indicate Image 2. As soon as you respond, the fixation cross will turn black and the next trial will begin.</p>"
+    + "<p>A fixation cross will appear in the center of the screen - focus on this cross. The image will then appear for a brief amount of time, so make sure you are watching closely as to not miss the target. Then, the scene and target will disappear, and you will see an image of colored squares. Once this image disappears you will briefly see a fixation cross followed by another image of a scene for a brief amount of time. This will again be followed by an image of colored squares.</p>"
+    + "<p>Then you will see a red fixation cross, indicating that your response has not been given yet. Respond which image's target was closer to you - Image 1 or Image 2? Press the 'z' key on your keyboard to indicate Image 1 or press the 'm' key on your keyboard to indicate Image 2. As soon as you respond, the fixation cross will turn black and the next trial will begin.</p>"
     + "<b>Please respond as quickly and accurately as possible!</b>"
-    + "<p> You will complete 96 trials total.</p>"
-    + "<p> The experiment will begin with three practice trials. If you are ready to begin, please click 'BEGIN' below. </p>"
+    + "<p> You will complete 52 trials total.</p>"
+    + "<p> The experiment will begin with three practice trials. During the practice portion you will receive feedback on each trial. The next trial will start momentarily after you see the feedback. If you are ready to begin, please click 'BEGIN' below. </p>"
     )
 }
 
@@ -316,6 +316,7 @@ function startPractice(){
     practiced = true
     $("#start_trials").show()
     $(".startTrialsButtonDiv").show();
+    $(".feedbackDiv").hide();
 
   }
 
@@ -326,9 +327,10 @@ function startPractice(){
     // have to account for the time already spent
     var scene1 = setTimeout(function(){showScene1();}, fixation_time); // the time here is how long it takes to show up NOT time on the screen
     var mask = setTimeout(function(){showMask1();}, fixation_time + scene_duration); 
-    var scene2 = setTimeout(function(){showScene2();}, fixation_time + scene_duration + mask_time); // the time here is how long it takes to show up NOT time on the screen
-    var mask2 = setTimeout(function(){showMask2();}, fixation_time + scene_duration + mask_time + scene_duration); 
-    var response = setTimeout(function(){getResponse();detectKeyPress();}, fixation_time + scene_duration + mask_time + scene_duration + mask_time)
+    var fixation2 = setTimeout(function(){showFixation();}, fixation_time + scene_duration + mask_time); 
+    var scene2 = setTimeout(function(){showScene2();}, fixation_time + scene_duration + mask_time + fixation_time); // the time here is how long it takes to show up NOT time on the screen
+    var mask2 = setTimeout(function(){showMask2();}, fixation_time + scene_duration + mask_time + fixation_time + scene_duration); 
+    var response = setTimeout(function(){getResponse();detectKeyPress();}, fixation_time + scene_duration + mask_time + fixation_time + scene_duration + mask_time)
   }
 }
 
@@ -380,10 +382,10 @@ function runTrial(){
     // have to account for the time already spent
     var scene1 = setTimeout(function(){showScene1();}, fixation_time); // the time here is how long it takes to show up NOT time on the screen
     var mask = setTimeout(function(){showMask1();}, fixation_time + scene_duration); 
-    var scene2 = setTimeout(function(){showScene2();}, fixation_time + scene_duration + mask_time); // the time here is how long it takes to show up NOT time on the screen
-    var mask2 = setTimeout(function(){showMask2();}, fixation_time + scene_duration + mask_time + scene_duration); 
-    var response = setTimeout(function(){getResponse();detectKeyPress();}, fixation_time + scene_duration + mask_time + scene_duration + mask_time)
-
+    var fixation2 = setTimeout(function(){showFixation();}, fixation_time + scene_duration + mask_time); 
+    var scene2 = setTimeout(function(){showScene2();}, fixation_time + scene_duration + mask_time + fixation_time); // the time here is how long it takes to show up NOT time on the screen
+    var mask2 = setTimeout(function(){showMask2();}, fixation_time + scene_duration + mask_time + fixation_time + scene_duration); 
+    var response = setTimeout(function(){getResponse();detectKeyPress();}, fixation_time + scene_duration + mask_time + fixation_time + scene_duration + mask_time)
   }
 }
 
@@ -395,6 +397,9 @@ function showFixation(){
 
   $(document).ready(function(){
     $(".fixationDiv").show();
+    $(".sceneDiv").hide();
+    $(".maskDiv").hide();
+    $(".feedbackDiv").hide();
   })
 
 }
@@ -423,6 +428,7 @@ function showScene1(){
     $(".fixationDiv").hide();
     $(".maskDiv").hide();
     $(".sceneDiv").show();
+    $(".feedbackDiv").hide();
   })
 
 }
@@ -453,6 +459,7 @@ function showScene2(){
     $(".fixationDiv").hide();
     $(".maskDiv").hide();
     $(".sceneDiv").show();
+    $(".feedbackDiv").hide();
   })
 
 }
@@ -484,6 +491,7 @@ function showMask1(){
     $(".fixationDiv").hide();
     $(".sceneDiv").hide();
     $(".maskDiv").show();
+    $(".feedbackDiv").hide();
   })
 
 }
@@ -505,6 +513,7 @@ function showMask2(){
     $(".fixationDiv").hide();
     $(".sceneDiv").hide();
     $(".maskDiv").show();
+    $(".feedbackDiv").hide();
   })
 
 }
@@ -523,6 +532,7 @@ function getResponse(){
     $(".fixationDiv").hide();
     $(".sceneDiv").hide();
     $(".maskDiv").hide();
+    $(".feedbackDiv").hide();
     $(".responseDiv").show();
 
   })
@@ -534,24 +544,84 @@ function detectKeyPress(){
 
 	// add event listener for keypress
 	$(document).bind("keypress", function(event){
-		if (event.which == 99){ //99 is js keycode for c
-			key = "c";
-			discrim_choice = 0;
-			endTrialTime = new Date; // time at which response has been given for past trial
-    		RT = endTrialTime - startTrialTime;
-
-			nextTrial(); //since button was pressed, move onto next trial
-		}
-		else if (event.which == 109){ //109 is js keycode for m
+		if (event.key == 'm'){ 
 			key = "m";
 			discrim_choice = 1;
 			endTrialTime = new Date; // time at which response has been given for past trial
     		RT = endTrialTime - startTrialTime;
 
-			nextTrial(); //since button was pressed, move onto next trial
+			if (practiced == false) {
+        var feedback = showFeedback();
+        var next = setTimeout(function(){nextTrial();}, 4000); // the time here is how long it takes to show up NOT time on the screen
+
+      }
+      else{
+        nextTrial(); //since button was pressed, move onto next trial
+      }
 		}
+    if (event.key == '0'){ 
+      key = "0";
+      discrim_choice = 2;
+      endTrialTime = new Date; // time at which response has been given for past trial
+        RT = endTrialTime - startTrialTime;
+
+      if (practiced == false) {
+        var feedback = showFeedback();
+        var next = setTimeout(function(){nextTrial();}, 4000); // the time here is how long it takes to show up NOT time on the screen
+
+      }
+      else{
+        nextTrial(); //since button was pressed, move onto next trial
+      }
+    }
+    else if (event.key == 'z'){ 
+      key = "z";
+      discrim_choice = 0;
+      endTrialTime = new Date; // time at which response has been given for past trial
+        RT = endTrialTime - startTrialTime;
+
+      if (practiced == false) {
+        var feedback = showFeedback();
+        var next = setTimeout(function(){nextTrial();}, 4000); // the time here is how long it takes to show up NOT time on the screen
+
+      }
+      else{
+        nextTrial(); //since button was pressed, move onto next trial
+      }
+    }
 	});
 } 
+
+function showFeedback(){
+  $(document).ready(function(){
+    $(".fixationDiv").hide();
+    $(".sceneDiv").hide();
+    $(".maskDiv").hide();
+    $(".responseDiv").hide();
+    $(".feedbackDiv").show();
+
+  })
+
+  var correct_answers = [0,0,1]
+  var trial_answer = correct_answers[practice_trial]
+
+  if (discrim_choice == trial_answer){
+      $("#feedback").empty().append("<b>Correct!</b>");
+      // $("#feedback").append("<p>Correct!</p>");
+  }
+  else{
+    if (trial_answer == 0){
+      $("#feedback").empty().append("<b>Incorrect. The target in Image 1 was closer to you. Remember to respond which image's target was closer to you!</b>");
+      // $("#feedback").append("<p>Incorrect. The target in Image 1 was closer to you. Remember to respond which image's target was closer to you!</p>");
+    }
+
+    else { 
+      $("#feedback").empty().append("<b>Incorrect. The target in Image 2 was closer to you. Remember to respond which image's target was closer to you!</b>");
+      // $("#feedback").append("<p>Incorrect. The target in Image 2 was closer to you. Remember to respond which image's target was closer to you!</p>");
+    }
+  }
+
+}
 
 function nextTrial(){ 
 
