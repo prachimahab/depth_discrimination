@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/001026_2014-06-08_13-11-39_260595134347_rgbf000149-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/001026_2014-06-08_13-11-39_260595134347_rgbf000149-resize/image/0000149.jpg",
+    "objects": [
+        {
+            "name": "computermonitor",
+            "dbID": 6,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 123.01219512195122,
+                    "depth": 3.9865000000000004
+                }
+            ]
+        }
+    ]
+}

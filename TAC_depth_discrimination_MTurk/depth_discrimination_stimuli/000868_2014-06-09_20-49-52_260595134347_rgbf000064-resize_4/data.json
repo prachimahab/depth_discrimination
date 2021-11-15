@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/000868_2014-06-09_20-49-52_260595134347_rgbf000064-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/000868_2014-06-09_20-49-52_260595134347_rgbf000064-resize/image/0000064.jpg",
+    "objects": [
+        {
+            "name": "chair",
+            "dbID": 2,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 344.7028590878149,
+                    "depth": 1.2814999999999999
+                }
+            ]
+        }
+    ]
+}

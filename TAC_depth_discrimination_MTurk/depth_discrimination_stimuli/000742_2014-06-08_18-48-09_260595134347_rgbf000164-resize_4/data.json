@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/000742_2014-06-08_18-48-09_260595134347_rgbf000164-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/000742_2014-06-08_18-48-09_260595134347_rgbf000164-resize/image/0000164.jpg",
+    "objects": [
+        {
+            "name": "wallspace",
+            "dbID": 28,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 100.77777777777777,
+                    "depth": 4.632
+                }
+            ]
+        }
+    ]
+}

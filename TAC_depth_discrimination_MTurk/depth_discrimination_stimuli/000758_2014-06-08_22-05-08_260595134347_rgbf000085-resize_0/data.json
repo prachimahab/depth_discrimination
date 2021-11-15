@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/000758_2014-06-08_22-05-08_260595134347_rgbf000085-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/000758_2014-06-08_22-05-08_260595134347_rgbf000085-resize/image/0000085.jpg",
+    "objects": [
+        {
+            "name": "lockers",
+            "dbID": 0,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 121.63981615868408,
+                    "depth": 3.3810000000000002
+                }
+            ]
+        }
+    ]
+}

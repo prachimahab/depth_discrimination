@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/000720_2014-06-08_18-37-27_260595134347_rgbf000203-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/000720_2014-06-08_18-37-27_260595134347_rgbf000203-resize/image/0000203.jpg",
+    "objects": [
+        {
+            "name": "paperpad",
+            "dbID": 15,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 263.09038344491785,
+                    "depth": 1.5579999999999998
+                }
+            ]
+        }
+    ]
+}

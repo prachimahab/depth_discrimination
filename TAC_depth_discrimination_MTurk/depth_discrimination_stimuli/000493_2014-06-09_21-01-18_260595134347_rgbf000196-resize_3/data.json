@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/000493_2014-06-09_21-01-18_260595134347_rgbf000196-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/000493_2014-06-09_21-01-18_260595134347_rgbf000196-resize/image/0000196.jpg",
+    "objects": [
+        {
+            "name": "wallseat",
+            "dbID": 4,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 141.42808121246782,
+                    "depth": 3.4400000000000004
+                }
+            ]
+        }
+    ]
+}

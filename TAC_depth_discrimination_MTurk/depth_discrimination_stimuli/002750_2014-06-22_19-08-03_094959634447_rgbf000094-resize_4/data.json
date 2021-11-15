@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/002750_2014-06-22_19-08-03_094959634447_rgbf000094-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/002750_2014-06-22_19-08-03_094959634447_rgbf000094-resize/image/0000094.jpg",
+    "objects": [
+        {
+            "name": "microwave",
+            "dbID": 2,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 194.75356164329654,
+                    "depth": 2.354
+                }
+            ]
+        }
+    ]
+}

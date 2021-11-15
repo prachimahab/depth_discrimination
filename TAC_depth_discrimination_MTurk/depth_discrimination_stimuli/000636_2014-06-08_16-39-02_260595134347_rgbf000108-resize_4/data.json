@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/000636_2014-06-08_16-39-02_260595134347_rgbf000108-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/000636_2014-06-08_16-39-02_260595134347_rgbf000108-resize/image/0000108.jpg",
+    "objects": [
+        {
+            "name": "divider",
+            "dbID": 22,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 214.8457595526561,
+                    "depth": 2.682
+                }
+            ]
+        }
+    ]
+}

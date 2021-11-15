@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/003079_2014-06-15_15-18-20_094959634447_rgbf000152-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/003079_2014-06-15_15-18-20_094959634447_rgbf000152-resize/image/0000152.jpg",
+    "objects": [
+        {
+            "name": "rangehood",
+            "dbID": 18,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 64.19142964071855,
+                    "depth": 2.8775
+                }
+            ]
+        }
+    ]
+}

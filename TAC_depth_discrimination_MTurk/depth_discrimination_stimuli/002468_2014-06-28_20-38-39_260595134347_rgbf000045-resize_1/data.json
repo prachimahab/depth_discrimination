@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/002468_2014-06-28_20-38-39_260595134347_rgbf000045-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/002468_2014-06-28_20-38-39_260595134347_rgbf000045-resize/image/0000045.jpg",
+    "objects": [
+        {
+            "name": "ikeasalesign",
+            "dbID": 2,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 76.2457627118644,
+                    "depth": 1.956
+                }
+            ]
+        }
+    ]
+}

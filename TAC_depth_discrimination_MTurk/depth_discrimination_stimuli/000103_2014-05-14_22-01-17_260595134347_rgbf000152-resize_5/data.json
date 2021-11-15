@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/000103_2014-05-14_22-01-17_260595134347_rgbf000152-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/000103_2014-05-14_22-01-17_260595134347_rgbf000152-resize/image/0000152.jpg",
+    "objects": [
+        {
+            "name": "printer",
+            "dbID": 1,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 191.57398753894083,
+                    "depth": 1.9929999999999999
+                }
+            ]
+        }
+    ]
+}

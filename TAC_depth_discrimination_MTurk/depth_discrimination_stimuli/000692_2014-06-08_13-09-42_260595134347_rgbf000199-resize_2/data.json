@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/000692_2014-06-08_13-09-42_260595134347_rgbf000199-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/000692_2014-06-08_13-09-42_260595134347_rgbf000199-resize/image/0000199.jpg",
+    "objects": [
+        {
+            "name": "cubiclewall",
+            "dbID": 13,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 147.53329491612243,
+                    "depth": 3.661
+                }
+            ]
+        }
+    ]
+}

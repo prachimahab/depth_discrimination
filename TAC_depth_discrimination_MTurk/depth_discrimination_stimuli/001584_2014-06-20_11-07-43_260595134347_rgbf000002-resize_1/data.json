@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/001584_2014-06-20_11-07-43_260595134347_rgbf000002-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/001584_2014-06-20_11-07-43_260595134347_rgbf000002-resize/image/0000002.jpg",
+    "objects": [
+        {
+            "name": "brickwall",
+            "dbID": 7,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 61.90548780487805,
+                    "depth": 3.5300000000000002
+                }
+            ]
+        }
+    ]
+}

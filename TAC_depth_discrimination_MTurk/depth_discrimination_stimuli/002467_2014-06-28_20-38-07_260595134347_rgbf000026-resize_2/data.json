@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/002467_2014-06-28_20-38-07_260595134347_rgbf000026-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/002467_2014-06-28_20-38-07_260595134347_rgbf000026-resize/image/0000026.jpg",
+    "objects": [
+        {
+            "name": "kitchencounter",
+            "dbID": 32,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 124.73382539261615,
+                    "depth": 4.742
+                }
+            ]
+        }
+    ]
+}

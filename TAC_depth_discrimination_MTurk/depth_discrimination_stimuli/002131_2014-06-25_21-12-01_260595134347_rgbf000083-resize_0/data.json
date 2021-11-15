@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/002131_2014-06-25_21-12-01_260595134347_rgbf000083-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/002131_2014-06-25_21-12-01_260595134347_rgbf000083-resize/image/0000083.jpg",
+    "objects": [
+        {
+            "name": "television",
+            "dbID": 5,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 50.0,
+                    "depth": 1.7685
+                }
+            ]
+        }
+    ]
+}

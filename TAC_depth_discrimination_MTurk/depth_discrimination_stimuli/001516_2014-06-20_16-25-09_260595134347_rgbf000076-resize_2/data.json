@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/001516_2014-06-20_16-25-09_260595134347_rgbf000076-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/001516_2014-06-20_16-25-09_260595134347_rgbf000076-resize/image/0000076.jpg",
+    "objects": [
+        {
+            "name": "sink",
+            "dbID": 0,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 160.64610389610388,
+                    "depth": 1.7445
+                }
+            ]
+        }
+    ]
+}

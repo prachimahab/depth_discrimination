@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/000436_2014-06-09_22-25-11_260595134347_rgbf000137-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/000436_2014-06-09_22-25-11_260595134347_rgbf000137-resize/image/0000137.jpg",
+    "objects": [
+        {
+            "name": "curtain",
+            "dbID": 15,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 97.44471153846153,
+                    "depth": 4.0705
+                }
+            ]
+        }
+    ]
+}

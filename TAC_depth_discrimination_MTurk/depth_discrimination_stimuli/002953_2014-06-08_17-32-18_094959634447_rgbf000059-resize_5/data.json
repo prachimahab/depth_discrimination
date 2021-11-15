@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/002953_2014-06-08_17-32-18_094959634447_rgbf000059-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/002953_2014-06-08_17-32-18_094959634447_rgbf000059-resize/image/0000059.jpg",
+    "objects": [
+        {
+            "name": "partiallyfoldedcloth",
+            "dbID": 32,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 353.74930875576035,
+                    "depth": 1.551
+                }
+            ]
+        }
+    ]
+}

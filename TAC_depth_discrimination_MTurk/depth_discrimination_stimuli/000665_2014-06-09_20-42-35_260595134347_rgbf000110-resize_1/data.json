@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/000665_2014-06-09_20-42-35_260595134347_rgbf000110-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/000665_2014-06-09_20-42-35_260595134347_rgbf000110-resize/image/0000110.jpg",
+    "objects": [
+        {
+            "name": "woodencupboard",
+            "dbID": 3,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 243.5783498046426,
+                    "depth": 3.057
+                }
+            ]
+        }
+    ]
+}

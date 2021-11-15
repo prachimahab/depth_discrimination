@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/003048_2014-06-15_13-49-43_094959634447_rgbf000150-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/003048_2014-06-15_13-49-43_094959634447_rgbf000150-resize/image/0000150.jpg",
+    "objects": [
+        {
+            "name": "wallhanging",
+            "dbID": 45,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 119.83333333333334,
+                    "depth": 4.0035
+                }
+            ]
+        }
+    ]
+}

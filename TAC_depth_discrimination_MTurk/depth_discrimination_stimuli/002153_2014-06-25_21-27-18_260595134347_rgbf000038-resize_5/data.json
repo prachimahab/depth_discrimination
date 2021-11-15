@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/002153_2014-06-25_21-27-18_260595134347_rgbf000038-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/002153_2014-06-25_21-27-18_260595134347_rgbf000038-resize/image/0000038.jpg",
+    "objects": [
+        {
+            "name": "roundtable",
+            "dbID": 0,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 303.43444055944053,
+                    "depth": 2.505
+                }
+            ]
+        }
+    ]
+}

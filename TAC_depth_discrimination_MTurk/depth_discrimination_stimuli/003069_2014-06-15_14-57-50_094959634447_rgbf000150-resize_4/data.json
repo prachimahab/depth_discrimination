@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/003069_2014-06-15_14-57-50_094959634447_rgbf000150-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/003069_2014-06-15_14-57-50_094959634447_rgbf000150-resize/image/0000150.jpg",
+    "objects": [
+        {
+            "name": "baner",
+            "dbID": 22,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 87.0982905982906,
+                    "depth": 4.208
+                }
+            ]
+        }
+    ]
+}

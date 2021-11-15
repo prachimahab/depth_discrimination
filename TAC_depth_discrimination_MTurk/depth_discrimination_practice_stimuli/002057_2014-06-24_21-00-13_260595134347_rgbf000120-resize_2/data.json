@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/002057_2014-06-24_21-00-13_260595134347_rgbf000120-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/002057_2014-06-24_21-00-13_260595134347_rgbf000120-resize/image/0000120.jpg",
+    "objects": [
+        {
+            "name": "bed",
+            "dbID": 6,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 358.0242130750605,
+                    "depth": 1.7329999999999999
+                }
+            ]
+        }
+    ]
+}

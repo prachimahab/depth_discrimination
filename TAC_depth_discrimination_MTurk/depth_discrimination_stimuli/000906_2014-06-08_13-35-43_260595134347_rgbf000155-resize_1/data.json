@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/000906_2014-06-08_13-35-43_260595134347_rgbf000155-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/000906_2014-06-08_13-35-43_260595134347_rgbf000155-resize/image/0000155.jpg",
+    "objects": [
+        {
+            "name": "wall",
+            "dbID": 7,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 71.30574324324324,
+                    "depth": 2.849
+                }
+            ]
+        }
+    ]
+}

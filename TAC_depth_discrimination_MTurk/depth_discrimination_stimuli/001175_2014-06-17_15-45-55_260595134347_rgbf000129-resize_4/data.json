@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/001175_2014-06-17_15-45-55_260595134347_rgbf000129-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/001175_2014-06-17_15-45-55_260595134347_rgbf000129-resize/image/0000129.jpg",
+    "objects": [
+        {
+            "name": "bookcase",
+            "dbID": 11,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 64.98287671232876,
+                    "depth": 4.255
+                }
+            ]
+        }
+    ]
+}

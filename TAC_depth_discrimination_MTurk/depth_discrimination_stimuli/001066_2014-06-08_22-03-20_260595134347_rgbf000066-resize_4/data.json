@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/001066_2014-06-08_22-03-20_260595134347_rgbf000066-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/001066_2014-06-08_22-03-20_260595134347_rgbf000066-resize/image/0000066.jpg",
+    "objects": [
+        {
+            "name": "pillar",
+            "dbID": 35,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 60.25675675675676,
+                    "depth": 4.2330000000000005
+                }
+            ]
+        }
+    ]
+}

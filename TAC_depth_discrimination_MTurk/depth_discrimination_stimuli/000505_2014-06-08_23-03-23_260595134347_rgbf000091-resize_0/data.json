@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/000505_2014-06-08_23-03-23_260595134347_rgbf000091-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/000505_2014-06-08_23-03-23_260595134347_rgbf000091-resize/image/0000091.jpg",
+    "objects": [
+        {
+            "name": "carpetfloor",
+            "dbID": 12,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 350.4256505576208,
+                    "depth": 3.3105
+                }
+            ]
+        }
+    ]
+}

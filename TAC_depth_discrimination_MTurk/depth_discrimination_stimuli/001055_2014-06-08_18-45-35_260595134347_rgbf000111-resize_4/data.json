@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/001055_2014-06-08_18-45-35_260595134347_rgbf000111-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/001055_2014-06-08_18-45-35_260595134347_rgbf000111-resize/image/0000111.jpg",
+    "objects": [
+        {
+            "name": "cloth",
+            "dbID": 23,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 50.95997807017544,
+                    "depth": 2.429
+                }
+            ]
+        }
+    ]
+}

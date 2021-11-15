@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/002444_2014-06-28_20-32-08_260595134347_rgbf000027-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/002444_2014-06-28_20-32-08_260595134347_rgbf000027-resize/image/0000027.jpg",
+    "objects": [
+        {
+            "name": "shelf",
+            "dbID": 15,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 142.6845917471466,
+                    "depth": 4.388999999999999
+                }
+            ]
+        }
+    ]
+}

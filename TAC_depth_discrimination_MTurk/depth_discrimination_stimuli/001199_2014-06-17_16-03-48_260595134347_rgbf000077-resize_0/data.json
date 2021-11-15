@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/001199_2014-06-17_16-03-48_260595134347_rgbf000077-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/001199_2014-06-17_16-03-48_260595134347_rgbf000077-resize/image/0000077.jpg",
+    "objects": [
+        {
+            "name": "glasswall",
+            "dbID": 8,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 68.04545454545455,
+                    "depth": 3.4375
+                }
+            ]
+        }
+    ]
+}
