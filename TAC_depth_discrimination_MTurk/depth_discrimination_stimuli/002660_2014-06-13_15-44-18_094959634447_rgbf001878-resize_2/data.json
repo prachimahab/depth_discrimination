@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/002660_2014-06-13_15-44-18_094959634447_rgbf001878-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/002660_2014-06-13_15-44-18_094959634447_rgbf001878-resize/image/0001878.jpg",
+    "objects": [
+        {
+            "name": "bar",
+            "dbID": 18,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 194.75624188767154,
+                    "depth": 3.576
+                }
+            ]
+        }
+    ]
+}

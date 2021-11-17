@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/002344_2014-06-28_20-06-29_260595134347_rgbf000030-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/002344_2014-06-28_20-06-29_260595134347_rgbf000030-resize/image/0000030.jpg",
+    "objects": [
+        {
+            "name": "footrest",
+            "dbID": 0,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 429.90756451042773,
+                    "depth": 1.5795
+                }
+            ]
+        }
+    ]
+}

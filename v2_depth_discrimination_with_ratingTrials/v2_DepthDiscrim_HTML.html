@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<link rel="stylesheet" href="v2_DepthDiscrim_CSS.css">
+		<script src="v2_DepthDiscrim_JS.js"></script>
+	</head>
+
+	<body>
+		<!-- This calls the php function, and on submit, the page refreshes (unless otherwise specified in php) -->
+		<form name="saveData" id="saveData" action="saveFile.php" method="post">
+			<!-- Any variables you want to pass to the php have to be here -->
+			<input type="hidden" name="experimentData" id="experimentData"> <!-- this value should be your data array after JSON.stringify(data)  -->
+			<input type="hidden" name="subjID" id="subjID" value="test">
+			<input type="hidden" name="startTime" id="startTime" value="test">
+			<input type="hidden" name="startDate" id="startDate" value="test">
+			<input type="hidden" name="completedTrialsNum" id="completedTrialsNum" value=0>
+		</form>
+		
+		<!-- instructions -->
+		<div id="startingInstructions" class="instructions">
+			<div class="hidden">
+				<script type="text/javascript">
+
+				// LOAD COUNTERBALANCING CSV and EXPERIMENT SEQUENCE JSON FILE 
+				var data = $.ajax({
+							  url: 'counterbalancing.csv',
+							  dataType: 'text',
+							}).done(successFunction);
+
+
+				function successFunction(data) { // converts counterbalancing csv to JS array
+					  var allRows = data.split(/\r?\n|\r/);
+					  // table is an array with each row appended, i.e. row 0 = table[0]
+					  var table = [];
+					  for (var singleRow = 0; singleRow < allRows.length; singleRow++) {
+
+						   var rowCells = allRows[singleRow].split(',');
+						    for (var rowCell = 0; rowCell < rowCells.length; rowCell++) {
+						    	if (rowCell == 0){
+						    		var table_row = []
+						    	}						    	
+						    	table_row.push(rowCells[rowCell]);
+						    }
+						    table.push(table_row);
+
+					}
+					findRow(table); // calls function to find row to be sampled 
+				}
+
+				function findRow(table){
+					var found = false;
+					for (var row = 1; row < table.length; row++){
+						var sampled = table[row][1];
+						if (found == false){
+							if (sampled == "0"){
+								var seq_filepath = table[row][0]; // selects sequence filepath that has not been sampled --> 0
+								var found = true;
+							}
+						}
+					}
+					var stim_seq = $.ajax({ // loads in stimulus sequence from server
+	                				url: seq_filepath,
+	                				method: 'GET',
+	                				dataType: 'json',
+	                				data: JSON.stringify(),
+	                				success: function (data) {
+	                    			stim_seq = data;
+	                    			preload(practice_seq, stim_seq); // calls function to preload all scene images 
+	                    			preloadMasks(practice_seq, stim_seq); // calls function to preload all mask images 
+	                				},
+            		});
+
+            		  // main list of all stimuli 
+  					var ratings_seq = $.ajax({ // loads in stimulus sequence from server
+                          url: "ratings_stimuli.json",
+                          method: 'GET',
+                          dataType: 'json',
+                          data: JSON.stringify(),
+                          success: function (data) {
+                            ratings_seq = shuffle(data); 
+                          },
+                	});
+  					// ratings_seq = shuffle(ratings_seq);
+  					function shuffle(o){ 
+				    for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+				    return o;
+					}	
+
+				}
+
+
+				//PRELOADING FUNCTIONS
+				var images_0 = new Array() // first images in the discrimination trial
+				var images_1 = new Array() // second images in the discrimination trial 
+				var masks = new Array()
+				function preload(practice_seq, stim_seq) {
+					for (var h = 0; h < practice_seq.length; h++) { // loops through all trials in practice sequence
+					images_0[h] = new Image() // constructer that creates an empty image object
+					images_0[h].src = practice_seq[h].image_path_target_0 // sets the image source for the object 
+
+					images_1[h] = new Image() // constructer that creates an empty image object
+					images_1[h].src = practice_seq[h].image_path_target_1 // sets the image source for the object 
+
+					masks[h] = new Image()
+					masks[h].src = practice_seq[h].mask_path
+					// console.log(h, "h")
+					}
+
+					for (var j = 0; j < practice_seq.length; j++) { // loops through all trials in practice sequence
+					masks[j] = new Image()
+					masks[j].src = practice_seq[j].mask_path
+					// console.log(j, "j")
+					}
+
+					for (var i = 0; i < stim_seq.length; i++) { // loops through all experimental trials in sequence 
+					images_0[i] = new Image()
+					images_0[i].src = stim_seq[i].image_path_target_0
+
+					images_1[i] = new Image()
+					images_1[i].src = stim_seq[i].image_path_target_1
+
+					masks[i] = new Image()
+					masks[i].src = stim_seq[i].mask_path
+					// console.log(i, "i")
+					}
+				}
+
+				
+				function preloadMasks(practice_seq, stim_seq) {
+
+					for (var k = 0; k < stim_seq.length; k++) { // loops through all experimental trials in sequence 
+					masks[k] = new Image()
+					masks[k].src = stim_seq[k].mask_path
+					// console.log(k, "k")
+					}
+				}
+				
+				</script>
+			</div>
+		</div>
+
+		<div id ="getConsent" class="instructions">
+		</div>
+
+		<div id ="Instructions2" class="instructions">
+			<h1>Instructions</h1>
+			<p>In the following experiment, you will be asked to make judgements on pictures of everyday scenes. There are two parts to the experiment.</p>
+
+			<h2>Part 1 Instructions: </h2>
+		    
+		    <p>For each trial, you will see two images of scenes with a red, black, and green circle (the target) displayed over an object in the scene one after another.</p>
+
+		    <p>Your task is to respond which image's target was closer to you - Image 1 or Image 2? Press the "z" key on your keyboard to indicate Image 1 or press the "m" key on your keyboard to indicate Image 2. </p>
+
+		    <b>On some trials Image 1 and Image 2 will be the same. Press the spacebar to indicate that you saw the same image twice.</b>
+
+		    <p>We ask that you pay close attention on each trial so you detect all of the targets, but occasionally you may accidentally miss one. If you do, please press the '0' key. You will not be penalized for missing a target, we'd just like to know so we can factor this into our analysis later.</p>
+
+		    <b>Please respond as quickly and accurately as possible! </b>
+
+	        <p>Note that the target will always appear in the center of your screen. </p>
+
+	        <p></p>
+
+			<img src="example_scenes.png" class="center" style="width:830px;height:350px;"/>
+		</div>
+
+		<div id = "FinalInstructions" class="instructions">
+			<h1> Part 1 Task Instructions: </h1>
+    	<p>A fixation cross will appear in the center of the screen - focus on this cross. When the cross turns green, the trial is about to begin. The image will then appear for a brief amount of time, so make sure you are watching closely as to not miss the target. Then, the scene and target will disappear, and you will see an image of colored squares. Once this image disappears you will briefly see a fixation cross followed by another image of a scene for a brief amount of time. This will again be followed by an image of colored squares.</p>
+
+      <p>Then you will see a red fixation cross, indicating that you need to give your response. Respond which image's target was closer to you - Image 1 or Image 2? Press the 'z' key on your keyboard to indicate Image 1 or press the 'm' key on your keyboard to indicate Image 2. As soon as you respond, the fixation cross will turn black and the next trial will begin. The figure below depicts how a trial will run. </p>
+
+      <b>On some trials Image 1 and Image 2 will be the same. Press the spacebar to indicate that you saw the same image twice.</b>
+
+
+      <b>Please respond as quickly and accurately as possible!</b>
+      <p> You will complete 40 trials total.</p>
+      <p> The experiment will begin with 9 practice trials. During the practice portion you will receive feedback on each trial. The next trial will start momentarily after you see the feedback. If you are ready to begin, please click 'START PRACTICE' below. </p>
+    
+			<img src="sample_flow.png" class="center" style="width:1100px;height:550px;"/>
+		</div>
+
+		<div id = "getUnits" class="instructions">
+		</div>
+
+		<div id="ratingsInstructions" class="instructions"> 
+			<h1>Part 2 Instructions: </h1>
+			<p>You have completed the first part of the experiment! </p>
+		    
+		    <p>In the last section of this experiment you will be rating 196 scenes based on two scene properties: mean depth and navigability. </p>
+
+		    <p>Mean depth corresponds to the scale or size of the space in the image, such as a close-up view or a panoramic scene. Examples of images ordered from low to high mean depth (left to right) are included below.</p>
+
+	        <p>You will also be asked to rate each image based on how easy it would be to navigate through the scene. Or in other words, how easy is it to move throughout the scene? Take into consideration obstacles, clutter, and restrictions to free movement in any direction. Examples of images ordered from low to high navigability (left to right) are included below</p>
+
+	      	<b>Please make sure you have read the definitions above carefully before selecting 'BEGIN' below!</b>
+
+
+	        <p></p>
+
+			<img src="scene_properties_example.png" class="center" style="width:630px;height:530px;"/>
+		</div>
+
+		<div id="lastBlockInstructions" class="instructions"> 
+		</div>
+
+
+		<!-- buttons -->
+
+		<div id="startConsentButton" class="buttonDivPg1">
+			<a href="#" id="startConsentText" onclick="showConsent()">Next</a>
+		</div>
+
+		<div id="Instructions2Button" class="buttonDivPg2">
+			<a href="#" id="Instructions2Text" onclick="nextInstructions()">Agree</a>
+		</div>
+
+		<div id="FinalInstructionsButton" class="buttonDivPg3">
+			<a href="#" id="FinalInstructionsText" onclick="finalInstructions()">Next</a>
+
+		</div>
+
+		<div id="getUnitsButton" class = "buttonDivPg4">
+			<a href="#" id="getUnitsText" onclick="myFunction();startPractice();">Start Practice</a>
+			<script type="text/javascript">
+				function myFunction() {
+				  alert("Please make your browser window full screen"); // so that images are consistently centered
+				}
+			</script>
+		</div>
+
+		<div id="metersSelectedButton" class = "metersButtonDiv">
+			<a href="#" id="metersSelectedText" onclick="recordUnitsMeters()">Meters</a>
+		</div>
+
+		<div id="feetSelectedButton" class = "feetButtonDiv">
+			<a href="#" id="feetSelectedText" onclick="recordUnitsFeet()">Feet</a>
+		</div>
+
+		<div id="startPracticeButton" class = "startPracticeButtonDiv">
+			<a href="#" id="startPracticeText" onclick="startPractice();">Start Practice</a>
+
+
+		</div>
+
+		<div id="startTrialsButton" class = "startTrialsButtonDiv">
+			<a href="#" id="startTrialsText" onclick="runTrial();">Start</a>
+		</div>
+		<!-- button to continue trials after break post block -->
+<!-- 		<div id="restartTrialsButton" class = "restartTrialsButtonDiv">
+			<a href="#" id="restartTrialsText" onclick="runTrial();">Continue Experiment</a>
+		</div>	 -->
+
+		<div id="startRatingButton" class="startRatingButtonDiv">
+			<a href="#" id="Instructions2Text" onclick="runRatingTrials();">Begin</a>
+		</div>	
+
+		<div id="revealCodeButton" class="buttonDiv">
+			<a href="#" id="revealCodeText" type onclick="endExperiment()">Reveal Code</a>
+		</div>
+
+
+		<!-- div to preload all images to prevent lag -->
+		<div id="preload" class="preload">
+		</div>
+
+		<div id="preload_masks" class="preload_masks">
+		</div>
+
+		<div id="preloadExperiment" class="preloadExperiment">
+		</div>
+
+		<div id="preload_masksExperiment" class="preload_masksExperiment">
+		</div>
+
+		<!-- start experiment -->
+		<div id="start_trials" class="startTrialsDiv">
+			<p>You have completed the practice trials!</p> 
+
+			<p>Reminder: Your task is to respond which image's target was closer to you - Image 1 or Image 2? Press the "z" key on your keyboard to indicate Image 1 or press the "m" key on your keyboard to indicate Image 2. </p>
+
+			<p>If Image 1 and Image 2 were the same, press the spacebar to indicate that you saw the same image twice.</p>
+
+		  <p>We ask that you pay close attention on each trial so you detect all of the targets, but occasionally you may accidentally miss one. If you do, please press the '0' key. </p>
+
+			<p>Click 'START' to continue to the experiment.</p>
+		</div>
+
+
+		<!-- end experiment -->
+		<div id="lastBlockInstructions" class="instructions">
+		</div>
+
+
+		<!-- fixations -->
+		<div id="fixation" class="fixationDiv">
+			<img id = "fixation_image" src="" width=750>
+		</div>
+
+		<div id="green_fixation" class="green_fixationDiv">
+			<img id = "green_fixation_image" src="" width=750>
+		</div>
+
+		<!-- mask -->
+		<div id="mask" class="maskDiv">
+			<img id= "mask_image" src="" width=2000>
+		</div>
+
+		<div id="maskExp" class="maskDiv">
+			<img id= "mask_image" src="" width=750>
+		</div>
+
+		<!-- Scene (w/ target) -->
+		<div id="scene" class="sceneDiv">
+			<img id= "scene_image" src="" width=600>
+		</div>
+
+		<div id="sceneExp" class="sceneDiv">
+			<img id= "scene_image" src="" width=750>
+		</div>
+
+		<div id="response" class="responseDiv">
+			<img id = "red_fixation_image" src="" width=750>
+<!-- 			<p>Press the <b> "c"</b> key on your keyboard to respond <b> "Image 1"</b>. </p>
+			<p>Press the <b> "m"</b> key on your keyboard to respond <b> "Image 2"</b>. </p> -->
+
+		</div>
+
+		<div id="feedback" class="feedbackDiv">
+		</div>
+
+
+		<div id="r_scene" class="r_sceneDiv">
+			<img id= "r_scene_image" src="" width=750>
+		</div>
+
+		<div id="meanDepth_response" class="meanDepth_responseDiv">
+			<p> Please rate the <b>‘mean depth’</b> of this scene -  1 being the lowest mean depth and 5 being highest mean depth. </p> 
+<!-- 			<input id="numb" autocomplete="off" onfocus="this.value=''" value="" autofocus/>
+ -->
+			<button type="button" class="ratingResponse_ButtonDiv" onfocus="this.value=''" value="" onclick="logMDRating1();">1</button>
+			<button type="button" class="ratingResponse_ButtonDiv" onfocus="this.value=''" value="" onclick="logMDRating2();">2</button>
+			<button type="button" class="ratingResponse_ButtonDiv" onfocus="this.value=''" value="" onclick="logMDRating3();">3</button>
+			<button type="button" class="ratingResponse_ButtonDiv" onfocus="this.value=''" value="" onclick="logMDRating4();">4</button>
+			<button type="button" class="ratingResponse_ButtonDiv" onfocus="this.value=''" value="" onclick="logMDRating5();">5</button>
+
+			<p> Mean depth corresponds to the scale or size of the space in the image, such as a close-up view or a panoramic scene. </p> 
+
+			<script>
+
+			function logMDRating1() {
+			 var md_rating =  1
+
+			 getNavigabilityRating(md_rating);
+			 $(".meanDepth_responseDiv").hide()
+			 $("#startRatingButtonDiv").hide();
+
+			}
+			function logMDRating2() {
+			 var md_rating =  2
+
+			 getNavigabilityRating(md_rating);
+			 $(".meanDepth_responseDiv").hide()
+			 $("#startRatingButtonDiv").hide();
+
+			}
+			function logMDRating3() {
+			 var md_rating =  3
+
+			 getNavigabilityRating(md_rating);
+			 $(".meanDepth_responseDiv").hide()
+			 $("#startRatingButtonDiv").hide();
+
+			}
+			function logMDRating4() {
+			 var md_rating =  4
+
+			 getNavigabilityRating(md_rating);
+			 $(".meanDepth_responseDiv").hide()
+			 $("#startRatingButtonDiv").hide();
+
+			}
+			function logMDRating5() {
+			 var md_rating =  5
+
+			 getNavigabilityRating(md_rating);
+			 $(".meanDepth_responseDiv").hide()
+			 $("#startRatingButtonDiv").hide();
+
+			}
+
+
+			</script>
+		</div>
+
+		<div id="navigability_response" class="navigability_responseDiv">
+			<p>Please rate the <b>‘navigability’</b> of this scene -  1 being the lowest navigability and 5 being highest navigability. </p> 
+
+			<button type="button" class="ratingNavResponse_ButtonDiv" onfocus="this.value=''" value="" onclick="logNavigRating1();">1</button>
+			<button type="button" class="ratingNavResponse_ButtonDiv" onfocus="this.value=''" value="" onclick="logNavigRating2();">2</button>
+			<button type="button" class="ratingNavResponse_ButtonDiv" onfocus="this.value=''" value="" onclick="logNavigRating3();">3</button>
+			<button type="button" class="ratingNavResponse_ButtonDiv" onfocus="this.value=''" value="" onclick="logNavigRating4();">4</button>
+			<button type="button" class="ratingNavResponse_ButtonDiv" onfocus="this.value=''" value="" onclick="logNavigRating5();">5</button>
+
+			<p> How ‘navigable’ is the scene? Or in other words, how easy is it to move throughout the scene? Take into consideration obstacles, clutter, and restrictions to free movement in any direction.</p> 
+
+			<script>
+
+			function logNavigRating1() {
+			 console.log(meanDepth_rating, "mdrating")
+			 navigability_rating =  1
+			 rating_trial ++ 
+			 trial ++ 
+
+			 runRatingTrials();
+			 $(".navigability_responseDiv").hide()
+			}
+
+			function logNavigRating2() {
+			 navigability_rating =  2
+			 rating_trial ++ 
+			 trial ++ 
+
+			 runRatingTrials();
+			 $(".navigability_responseDiv").hide() 
+			}
+
+			function logNavigRating3() {
+			 navigability_rating =  3
+			 rating_trial ++ 
+			 trial ++ 
+
+			 runRatingTrials();
+			 $(".navigability_responseDiv").hide()
+			}
+
+			function logNavigRating4() {
+			 navigability_rating =  4
+			 rating_trial ++ 
+			 trial ++ 
+
+			 runRatingTrials();
+			 $(".navigability_responseDiv").hide()
+			}
+
+			function logNavigRating5() {
+			 navigability_rating =  5
+			 rating_trial ++ 
+			 trial ++ 
+
+			 runRatingTrials();
+			 $(".navigability_responseDiv").hide()
+			}
+
+
+			</script>
+		</div>
+
+		<!-- COUNTERBALANCING: Order of scene property questions if flipped if url fragment is odd -->
+
+		<div id="cb_navigability_response" class="cb_navigability_responseDiv">
+			<p> Please rate the <b>‘navigability’</b> of this scene -  1 being the lowest navigability and 5 being highest navigability. </p> 
+
+			<button type="button" class="ratingNavResponse_ButtonDiv" onfocus="this.value=''" value="" onclick="cb_logNavRating1();">1</button>
+			<button type="button" class="ratingNavResponse_ButtonDiv" onfocus="this.value=''" value="" onclick="cb_logNavRating2();">2</button>
+			<button type="button" class="ratingNavResponse_ButtonDiv" onfocus="this.value=''" value="" onclick="cb_logNavRating3();">3</button>
+			<button type="button" class="ratingNavResponse_ButtonDiv" onfocus="this.value=''" value="" onclick="cb_logNavRating4();">4</button>
+			<button type="button" class="ratingNavResponse_ButtonDiv" onfocus="this.value=''" value="" onclick="cb_logNavRating5();">5</button>
+
+			<p> How ‘navigable’ is the scene? Or in other words, how easy is it to move throughout the scene? Take into consideration obstacles, clutter, and restrictions to free movement in any direction.</p> 
+
+			<script>
+
+			function cb_logNavRating1() {
+			 var nav_rating =  1
+
+			 cb_getMeanDepthRating(nav_rating);
+			 $(".cb_navigability_responseDiv").hide()
+			 $("#startRatingButtonDiv").hide();
+
+			}
+			function cb_logNavRating2() {
+			 var nav_rating =  2
+
+			 cb_getMeanDepthRating(nav_rating);
+			 $(".cb_navigability_responseDiv").hide()
+			 $("#startRatingButtonDiv").hide();
+
+			}
+			function cb_logNavRating3() {
+			 var nav_rating =  3
+
+			 cb_getMeanDepthRating(nav_rating);
+			 $(".cb_navigability_responseDiv").hide()
+			 $("#startRatingButtonDiv").hide();
+
+			}
+			function cb_logNavRating4() {
+			 var nav_rating =  4
+
+			 cb_getMeanDepthRating(nav_rating);
+			 $(".cb_navigability_responseDiv").hide()
+			 $("#startRatingButtonDiv").hide();
+
+			}
+			function cb_logNavRating5() {
+			 var nav_rating =  5
+
+			 cb_getMeanDepthRating(nav_rating);
+			 $(".cb_navigability_responseDiv").hide()
+			 $("#startRatingButtonDiv").hide();
+
+			}
+
+
+			</script>
+		</div>
+
+		<div id="cb_meanDepth_response" class="cb_meanDepth_responseDiv">
+			<p> Please rate the <b>‘mean depth’</b> of this scene -  1 being the lowest mean depth and 5 being highest mean depth.</p> 
+
+			<button type="button" class="ratingResponse_ButtonDiv" onfocus="this.value=''" value="" onclick="cb_logMDRating1();">1</button>
+			<button type="button" class="ratingResponse_ButtonDiv" onfocus="this.value=''" value="" onclick="cb_logMDRating2();">2</button>
+			<button type="button" class="ratingResponse_ButtonDiv" onfocus="this.value=''" value="" onclick="cb_logMDRating3();">3</button>
+			<button type="button" class="ratingResponse_ButtonDiv" onfocus="this.value=''" value="" onclick="cb_logMDRating4();">4</button>
+			<button type="button" class="ratingResponse_ButtonDiv" onfocus="this.value=''" value="" onclick="cb_logMDRating5();">5</button>
+
+			<p> Mean depth corresponds to the scale or size of the space in the image, such as a close-up view or a panoramic scene.</p> 
+
+			<script>
+
+			function cb_logMDRating1() {
+			 meanDepth_rating =  1
+			 rating_trial ++ 
+			 trial ++ 
+
+			 runRatingTrials();
+			 $(".cb_meanDepth_responseDiv").hide()
+			}
+
+			function cb_logMDRating2() {
+			 meanDepth_rating =  2
+			 rating_trial ++ 
+			 trial ++ 
+
+			 runRatingTrials();
+			 $(".cb_meanDepth_responseDiv").hide() 
+			}
+
+			function cb_logMDRating3() {
+			 meanDepth_rating =  3
+			 rating_trial ++ 
+			 trial ++ 
+
+			 runRatingTrials();
+			 $(".cb_meanDepth_responseDiv").hide()
+			}
+
+			function cb_logMDRating4() {
+			 meanDepth_rating =  4
+			 rating_trial ++ 
+			 trial ++ 
+
+			 runRatingTrials();
+			 $(".cb_meanDepth_responseDiv").hide()
+			}
+
+			function cb_logMDRating5() {
+			 meanDepth_rating =  5
+			 rating_trial ++ 
+			 trial ++ 
+
+			 runRatingTrials();
+			 $(".cb_meanDepth_responseDiv").hide()
+			}
+
+
+			</script>
+		</div>
+
+		<div id="age" class="ageDiv">
+			<h1> Please report your age in years below. </h1>
+			<input id="age_numb" autocomplete="off" onfocus="this.value=''" value="" autofocus/>
+
+			<button type="button" onfocus="this.value=''" value="" onclick="age_validateForm();">Submit</button>
+			<p id="_feedback"></p>
+			<script>
+			$("age_numb").focus();
+			var x_age = document.getElementById("age_numb").autofocus; // checks that cursor is in the form field automatically 
+			// console.log(x, "is it autofocused?")
+			
+			var input_age = document.getElementById("age_numb");
+			input_age.addEventListener("keyup", function(event) { // allows participant to press enter 
+			  if (event.keyCode === 13) {
+			   age_validateForm();
+			  }
+			});
+			</script>
+			<script>
+				
+			function age_validateForm() { // validates trial depth response 
+			  var age_response, _text;
+
+			 // Get the value of the input_age field with id="age_numb"
+			 age_response = document.getElementById("age_numb").value;
+
+
+			  // If x is not a Number, less than zero, or no response was given
+			  if (isNaN(age_response) || age_response < 0 || age_response.length == 0) {
+			    _text = "Please enter a valid number";
+			  } 
+			  else {
+			  	sceneRatingInstructions();
+
+			  	_text=" "
+
+			  }
+			  document.getElementById("_feedback").innerHTML = _text;
+			}
+			</script>
+		</div>
+		
+	</body>
+</html> 

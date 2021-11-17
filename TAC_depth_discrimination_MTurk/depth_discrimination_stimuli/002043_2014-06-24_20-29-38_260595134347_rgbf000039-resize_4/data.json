@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/002043_2014-06-24_20-29-38_260595134347_rgbf000039-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/002043_2014-06-24_20-29-38_260595134347_rgbf000039-resize/image/0000039.jpg",
+    "objects": [
+        {
+            "name": "pillow",
+            "dbID": 4,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 118.747909589757,
+                    "depth": 2.8435
+                }
+            ]
+        }
+    ]
+}

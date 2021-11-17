@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/001011_2014-06-08_23-18-54_260595134347_rgbf000044-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/001011_2014-06-08_23-18-54_260595134347_rgbf000044-resize/image/0000044.jpg",
+    "objects": [
+        {
+            "name": "cpu",
+            "dbID": 1,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 211.8441091954023,
+                    "depth": 2.473
+                }
+            ]
+        }
+    ]
+}

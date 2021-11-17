@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/000515_2014-06-09_16-14-35_260595134347_rgbf000090-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/000515_2014-06-09_16-14-35_260595134347_rgbf000090-resize/image/0000090.jpg",
+    "objects": [
+        {
+            "name": "eraseboard",
+            "dbID": 32,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 40.70700636942675,
+                    "depth": 3.1125
+                }
+            ]
+        }
+    ]
+}

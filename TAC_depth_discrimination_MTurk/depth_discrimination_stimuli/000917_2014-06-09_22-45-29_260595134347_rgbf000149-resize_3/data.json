@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/000917_2014-06-09_22-45-29_260595134347_rgbf000149-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/000917_2014-06-09_22-45-29_260595134347_rgbf000149-resize/image/0000149.jpg",
+    "objects": [
+        {
+            "name": "toaster",
+            "dbID": 26,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 59.785714285714285,
+                    "depth": 4.1865
+                }
+            ]
+        }
+    ]
+}

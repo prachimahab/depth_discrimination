@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/000810_2014-06-08_17-20-01_260595134347_rgbf000105-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/000810_2014-06-08_17-20-01_260595134347_rgbf000105-resize/image/0000105.jpg",
+    "objects": [
+        {
+            "name": "toilet",
+            "dbID": 12,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 265.2547770700637,
+                    "depth": 1.4865
+                }
+            ]
+        }
+    ]
+}

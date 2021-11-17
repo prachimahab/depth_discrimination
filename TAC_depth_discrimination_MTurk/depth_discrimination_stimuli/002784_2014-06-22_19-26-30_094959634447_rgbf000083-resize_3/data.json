@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/002784_2014-06-22_19-26-30_094959634447_rgbf000083-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/002784_2014-06-22_19-26-30_094959634447_rgbf000083-resize/image/0000083.jpg",
+    "objects": [
+        {
+            "name": "pipes",
+            "dbID": 13,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 369.28548689908297,
+                    "depth": 1.8046666666666666
+                }
+            ]
+        }
+    ]
+}

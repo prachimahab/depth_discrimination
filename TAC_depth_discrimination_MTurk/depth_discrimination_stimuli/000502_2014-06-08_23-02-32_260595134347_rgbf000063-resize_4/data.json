@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/000502_2014-06-08_23-02-32_260595134347_rgbf000063-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/000502_2014-06-08_23-02-32_260595134347_rgbf000063-resize/image/0000063.jpg",
+    "objects": [
+        {
+            "name": "trashcan",
+            "dbID": 11,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 284.2413793103448,
+                    "depth": 2.431
+                }
+            ]
+        }
+    ]
+}

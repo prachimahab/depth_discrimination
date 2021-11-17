@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/001110_2014-06-15_17-25-28_260595134347_rgbf000150-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/001110_2014-06-15_17-25-28_260595134347_rgbf000150-resize/image/0000150.jpg",
+    "objects": [
+        {
+            "name": "piano",
+            "dbID": 3,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 254.89780585942412,
+                    "depth": 1.7115
+                }
+            ]
+        }
+    ]
+}

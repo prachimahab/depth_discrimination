@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/001571_2014-06-20_17-21-32_260595134347_rgbf000089-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/001571_2014-06-20_17-21-32_260595134347_rgbf000089-resize/image/0000089.jpg",
+    "objects": [
+        {
+            "name": "seat",
+            "dbID": 6,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 298.0571428571428,
+                    "depth": 1.8599999999999999
+                }
+            ]
+        }
+    ]
+}

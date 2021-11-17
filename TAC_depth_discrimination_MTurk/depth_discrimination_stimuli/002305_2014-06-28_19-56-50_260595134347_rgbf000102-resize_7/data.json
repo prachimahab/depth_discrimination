@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/002305_2014-06-28_19-56-50_260595134347_rgbf000102-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/002305_2014-06-28_19-56-50_260595134347_rgbf000102-resize/image/0000102.jpg",
+    "objects": [
+        {
+            "name": "crib",
+            "dbID": 3,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 203.42416182110603,
+                    "depth": 4.8725
+                }
+            ]
+        }
+    ]
+}

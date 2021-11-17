@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/002763_2014-06-22_19-13-10_094959634447_rgbf000075-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/002763_2014-06-22_19-13-10_094959634447_rgbf000075-resize/image/0000075.jpg",
+    "objects": [
+        {
+            "name": "wire",
+            "dbID": 31,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 184.57096171802056,
+                    "depth": 1.68375
+                }
+            ]
+        }
+    ]
+}

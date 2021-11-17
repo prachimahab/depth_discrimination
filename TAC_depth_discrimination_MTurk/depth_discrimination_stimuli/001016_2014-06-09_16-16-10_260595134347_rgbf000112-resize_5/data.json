@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/001016_2014-06-09_16-16-10_260595134347_rgbf000112-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/001016_2014-06-09_16-16-10_260595134347_rgbf000112-resize/image/0000112.jpg",
+    "objects": [
+        {
+            "name": "shoulderbag",
+            "dbID": 7,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 149.78571428571428,
+                    "depth": 1.6564999999999999
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/000556_2014-06-09_22-42-56_260595134347_rgbf000214-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/000556_2014-06-09_22-42-56_260595134347_rgbf000214-resize/image/0000214.jpg",
+    "objects": [
+        {
+            "name": "sofas",
+            "dbID": 2,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 199.75870646766168,
+                    "depth": 4.8415
+                }
+            ]
+        }
+    ]
+}

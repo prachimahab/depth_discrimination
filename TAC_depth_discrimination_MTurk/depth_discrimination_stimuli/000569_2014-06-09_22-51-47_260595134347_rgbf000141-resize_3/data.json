@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/000569_2014-06-09_22-51-47_260595134347_rgbf000141-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/000569_2014-06-09_22-51-47_260595134347_rgbf000141-resize/image/0000141.jpg",
+    "objects": [
+        {
+            "name": "bulletinboard",
+            "dbID": 3,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 88.43759502909157,
+                    "depth": 4.5120000000000005
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/002545_2014-06-24_13-38-53_094959634447_rgbf000080-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/002545_2014-06-24_13-38-53_094959634447_rgbf000080-resize/image/0000080.jpg",
+    "objects": [
+        {
+            "name": "countertop",
+            "dbID": 33,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 136.54288819268197,
+                    "depth": 1.9205
+                }
+            ]
+        }
+    ]
+}

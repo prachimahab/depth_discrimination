@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/002805_2014-06-22_19-54-03_094959634447_rgbf000079-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/002805_2014-06-22_19-54-03_094959634447_rgbf000079-resize/image/0000079.jpg",
+    "objects": [
+        {
+            "name": "pot",
+            "dbID": 6,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 143.41964285714286,
+                    "depth": 3.144
+                }
+            ]
+        }
+    ]
+}

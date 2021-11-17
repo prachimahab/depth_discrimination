@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/001148_2014-06-17_15-26-42_260595134347_rgbf000129-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/001148_2014-06-17_15-26-42_260595134347_rgbf000129-resize/image/0000129.jpg",
+    "objects": [
+        {
+            "name": "whitewall2",
+            "dbID": 1,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 63.206896551724135,
+                    "depth": 4.368
+                }
+            ]
+        }
+    ]
+}

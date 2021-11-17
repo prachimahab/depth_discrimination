@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/000780_2014-06-08_22-28-29_260595134347_rgbf000126-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/000780_2014-06-08_22-28-29_260595134347_rgbf000126-resize/image/0000126.jpg",
+    "objects": [
+        {
+            "name": "whiteboard",
+            "dbID": 6,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 80.94087997138305,
+                    "depth": 3.3825
+                }
+            ]
+        }
+    ]
+}

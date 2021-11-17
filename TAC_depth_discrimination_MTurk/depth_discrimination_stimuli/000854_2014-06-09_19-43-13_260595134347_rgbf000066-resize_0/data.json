@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/000854_2014-06-09_19-43-13_260595134347_rgbf000066-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/000854_2014-06-09_19-43-13_260595134347_rgbf000066-resize/image/0000066.jpg",
+    "objects": [
+        {
+            "name": "bench",
+            "dbID": 3,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 204.88736842105263,
+                    "depth": 3.068
+                }
+            ]
+        }
+    ]
+}

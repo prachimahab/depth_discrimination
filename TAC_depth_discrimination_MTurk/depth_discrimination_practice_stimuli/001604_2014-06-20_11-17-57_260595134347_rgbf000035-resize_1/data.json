@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/001604_2014-06-20_11-17-57_260595134347_rgbf000035-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/001604_2014-06-20_11-17-57_260595134347_rgbf000035-resize/image/0000035.jpg",
+    "objects": [
+        {
+            "name": "loungechair",
+            "dbID": 2,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 264.43102836879433,
+                    "depth": 3.7735
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,17 @@
+{
+    "dbPath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/001244_2014-06-17_16-47-45_260595134347_rgbf000030-resize",
+    "imagePath": "/Users/prachi/Documents/depth_duration/kinect2data_subset/001244_2014-06-17_16-47-45_260595134347_rgbf000030-resize/image/0000030.jpg",
+    "objects": [
+        {
+            "name": "wood",
+            "dbID": 7,
+            "crossing_point": [
+                {
+                    "x": 364,
+                    "y": 163.14548847776695,
+                    "depth": 2.0425
+                }
+            ]
+        }
+    ]
+}
