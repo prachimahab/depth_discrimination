@@ -30,13 +30,7 @@ var thisData = {
   "log_sceneDuration1": [],
   "log_mask1": [],
   "log_sceneDuration2": [],
-  "log_mask2": [],
-  "unitSelection": [],
-  "meanDepth_rating": [],
-  "navigability_rating": [],
-  "rated_stimulus": [],
-  "rating_RT": []
-};
+  "log_mask2": []};
 
 // information flow: depth_duration_variables.csv --> url for participant --> counterbalancing csv indexed by url fragment --> sampled json path
 // depth_duration_variables.csv is uploaded when publishing a batch --> This contains the url for each participant 
@@ -55,7 +49,7 @@ var startDate = start.getMonth() + "-" + start.getDate() + "-" + start.getFullYe
 var startTime = start.getHours() + "-" + start.getMinutes() + "-" + start.getSeconds();
 
 // initialize empty variables
-var stimulus_0, stimulus_1, duration, actual_depth_0, actual_depth_1, discrim_choice, endExpTime, startExpTime, RT, log_fixation, log_sceneDuration1, log_mask1, log_sceneDuration2, log_mask2, reported_age, meanDepth_rating, navigability_rating, rated_stimulus, rating_RT; 
+var stimulus_0, stimulus_1, duration, actual_depth_0, actual_depth_1, discrim_choice, endExpTime, startExpTime, RT, log_fixation, log_sceneDuration1, log_mask1, log_sceneDuration2, log_mask2, reported_age, meanDepth_rating, navigability_rating, rated_stimulus, rating_RT, reported_gender; 
 
 // unit preference variables 
 var pref = false // unit preference has not been made
@@ -1192,6 +1186,8 @@ function lastInstructions(){
   // }
   if (age_recorded == false){
     reported_age = document.getElementById("age_numb").value;
+    reported_gender = document.getElementById("gender").value;
+    console.log(reported_gender)
 
     saveTrialData();
     age_recorded = true
@@ -1253,7 +1249,6 @@ function saveTrialData(){
   thisData["screenHeight"].push(screen.height);
   thisData["startDate"].push(startDate);
   thisData["startTime"].push(startTime);
-  thisData["unitSelection"].push(unit);
 
   // trial-by-trial variables, changes each time this function is called
   thisData["trial"].push(trial);
@@ -1269,10 +1264,6 @@ function saveTrialData(){
   thisData["log_mask1"].push(log_mask1);
   thisData["log_sceneDuration2"].push(log_sceneDuration2);
   thisData["log_mask2"].push(log_mask2);
-  thisData["meanDepth_rating"].push(meanDepth_rating);
-  thisData["navigability_rating"].push(navigability_rating);
-  thisData["rated_stimulus"].push(rated_stimulus);
-  thisData["rating_RT"].push(rating_RT);
 
 }
 
@@ -1288,17 +1279,18 @@ function saveAllData() {
   var age = reported_age;
   console.log('age', age)
   thisData["age"] = Array(trial).fill(age);
+  thisData["gender"] = Array(trial).fill(reported_gender);
 
 
-  thisData['practice_performance_0'] = Array(trial).fill(practice_performance[0]);
-  thisData['practice_performance_1'] = Array(trial).fill(practice_performance[1]);
-  thisData['practice_performance_2'] = Array(trial).fill(practice_performance[2]);
-  thisData['practice_performance_3'] = Array(trial).fill(practice_performance[3]);
-  thisData['practice_performance_4'] = Array(trial).fill(practice_performance[4]);
-  thisData['practice_performance_5'] = Array(trial).fill(practice_performance[5]);
-  thisData['practice_performance_6'] = Array(trial).fill(practice_performance[6]);
-  thisData['practice_performance_7'] = Array(trial).fill(practice_performance[7]);
-  thisData['practice_performance_8'] = Array(trial).fill(practice_performance[8]);
+  // thisData['practice_performance_0'] = Array(trial).fill(practice_performance[0]);
+  // thisData['practice_performance_1'] = Array(trial).fill(practice_performance[1]);
+  // thisData['practice_performance_2'] = Array(trial).fill(practice_performance[2]);
+  // thisData['practice_performance_3'] = Array(trial).fill(practice_performance[3]);
+  // thisData['practice_performance_4'] = Array(trial).fill(practice_performance[4]);
+  // thisData['practice_performance_5'] = Array(trial).fill(practice_performance[5]);
+  // thisData['practice_performance_6'] = Array(trial).fill(practice_performance[6]);
+  // thisData['practice_performance_7'] = Array(trial).fill(practice_performance[7]);
+  // thisData['practice_performance_8'] = Array(trial).fill(practice_performance[8]);
 
 
   // change values for input divs to pass to php

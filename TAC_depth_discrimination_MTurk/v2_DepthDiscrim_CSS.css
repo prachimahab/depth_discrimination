@@ -215,14 +215,31 @@ body {
 }
 
 .startTrialsButtonDiv{
+/*  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;*/
+
+  font-size: 18pt;
   width: 100px;
   text-align: center;
+  text-decoration: none;
   border: 4px outset black;
   background:cadetblue;
   padding: 5px;
-  margin: 0 auto;
+  cursor: pointer;
   color: white;
-  display: none; 
+  margin: 0 auto;
+  display: none;
+  position: absolute;
+  left: 80;
+  top: 50;
 }
 
 .restartTrialsButtonDiv{
@@ -506,7 +523,7 @@ body {
   display: none;
   position: absolute;
   top: 10%;
-  left: 45%;
+  left: 5%;
   margin-top: -50px;
   margin-left: -50px;
   width: 200;
@@ -515,7 +532,7 @@ body {
 }
 
 .startTrialsDiv {
-  padding-top: 20px;
+  padding-top: 50px;
   padding-left: 200px;
   padding-right: 200px;
   margin: 0 auto;

@@ -577,6 +577,42 @@
 		</div>
 
 		<div id="age" class="ageDiv">
+			<h1> What term best expresses how you describe your gender identity? </h1>
+			<p>Note: we are asking about gender in order to understand how your responses may differ based on different demographic characteristics. Specifically in this case, we are referring to your gender identity.</p>
+
+
+			<html>
+
+			<script>
+			function getGender() {
+			var mylist = document.getElementById("myList");
+			document.getElementById("gender").value = mylist.options[mylist.selectedIndex].text;
+			var genderResponse = mylist.options[mylist.selectedIndex].text;
+			console.log(genderResponse)
+
+			}
+			</script>
+
+			<body>
+			<form>
+			<b> Select a term: </b>
+			<select id = "myList" onchange = "getGender()">
+			<option> ---Choose a term--- </option>
+			<option> Man </option>
+			<option> Woman </option>
+			<option> Non-binary </option>
+			<option> Transgender </option>
+			<option>None of these describe me</option>
+			<option>Prefer not to answer</option>
+			</select>
+			<p> Your selected term is: </p>
+			<input type = "text" id = "gender" size = "20">
+			</form>
+			</body>
+			</html>
+
+
+
 			<h1> Please report your age in years below. </h1>
 			<input id="age_numb" autocomplete="off" onfocus="this.value=''" value="" autofocus/>
 
